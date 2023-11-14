@@ -1,0 +1,116 @@
+#
+# Default settings for the simulation
+#
+## Scenario settings
+# nombre de la simulación (nombre del reporte)
+Scenario.name = test_scenario
+# usualmente en true, esto simula conecciones a menos que se quieran usar trazas externas
+Scenario.simulateConnections = true
+# el tiempo en segundos que la función update() en MessageRouter.java se llama
+Scenario.updateInterval = 0.1
+# el tiempo en segundos que debe durar la simulación (43200s == 12h)
+Scenario.endTime = 43200
+# cantidad de grupos de nodos
+Scenario.nrofHostGroups = 2
+
+## Interface-specific settings:
+# se pueden crear todas las interfaces que se requieran con cualquier nombre
+# type : which interface class the interface belongs to
+# For different types, the sub-parameters are interface-specific
+# For SimpleBroadcastInterface, the parameters are:
+# transmitSpeed : transmit speed of the interface (bytes per second)
+# transmitRange : range of the interface (meters)
+
+# interfaz test
+#
+# type es la clase de interfaz implementada, vienen 3 interfaces con ONE simulator
+# -DistanceCapacityInterface: tiene en cuenta la distancia entre los nodos para determinar la capacidad de los links. LAs velocidades se entregan como ujna lista separada por comas
+# -InterferenceLimitedInterface: bit-rate variable que depende de la cantidad de estaciones de transmisión aledañas.
+# -SimpleBroadcastInterface: bit-rate constante con un transmisión a la vez.
+testInterface.type = SimpleBroadcastInterface
+# velocidad de transmisión en *Bytes* por segundo (2 Mbps = 250kBps)
+testInterface.transmitSpeed = 250k
+#rango de la interfaz en metros
+testInterface.transmitRange = 1000
+
+
+# Common settings for all groups
+# configuraciones para todos los grupos en "Group" sin ningún número, si se quiere una configuración para un grupo especifico, debe ser "Group<id>", por ejemplo Group1, Group2, etc.
+
+# Describe la forma en que se mueven los nodos. Los modelos de movimientos están en el directorio "movement", existen muchos tipos de modelos de movimiento
+Group.movementModel = MapRouteMovement
+# protocolo que usarán los nodos para enrutar los mensajes. Los protocolos están en el directorio "routing".
+Group.router = EpidemicRouter
+# Tamaño de los buffers en bytes de cada nodo, es basicamente decir cuanta memoria tienen disponibles.
+Group.bufferSize = 5M
+# Par de número que representan la cantidad mínima y máxima de tiempo en segundos que los nodos se toman al llegar a destino (cuanto tiempo se quedan parados all llegar)
+Group.waitTime = 0, 120
+
+# configuraciones de la interfaz de los grupos
+#cantidad de interfaces que pueden usar
+Group.nrofInterfaces = 1
+# se define la interfaz a usar, en caso de usar más de una, las siguientes interfaces se definen como interface2, interface3, etc.
+Group.interface1 = testInterface
+
+# time to live de los mensajes del grupo
+Group.msgTtl = 300
+# número de nodos por grupo
+Group.nrofHosts = 1
+#tipo de ruta
+Group.routeType = 2
+
+#configuraciones micro
+
+# Identdificador del grupo, es sólo una letra que se le asigna a esos nodos
+
+# Sirve para el modelo MapRouteMovement. Especifica qué nodos del mapa están ok para el grupo. Los mapas tienen grupos de nodos que se pueden visitar, se pueden dejar todos por defecto o elegir un subset de estos.
+Group.okMaps = 3
+# Especificar archivo de rutas, sirve para el modelo MapRouteMovement
+Group.routeFile = data/tram10.wkt
+
+#grupo 1
+Group1.groupID = p
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group1.speed = 0.5, 0.6
+#grupo 2
+Group2.groupID = b
+Group2.speed = 0.5, 0.6
+
+#configuraciones especificas para MapBasedMovement
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+
+## Message creation parameters
+
+# Cuantos generadores de eventos
+Events.nrof = 1
+# Clase que genera los eventos. Otras clases de generadores se pueden encontrar en el directorio "input".
+Events1.class = MessageEventGenerator
+
+# (following settings are specific for the MessageEventGenerator class)
+# intervalo en segundos que indica cada cuanto se crean nuevos eventos
+Events1.interval = 25,35
+# Tamaño de los mensajes en Bytes
+Events1.size = 100,200
+# Rango de direcciones de los nodos que generan eventos, por ejemplo si se quiere que los nodos del 1 al 5 generen eventos se escribe "1,5"
+Events1.hosts = 0,2
+# Identificador del evento
+Events1.prefix = M
+
+#algunos protocolos tienen sus propias configuraciones
+#SprayAndWaitRouter.nrofCopies = 6
+
+
+# Reports - all report names have to be valid report classes
+# Cantidad de reportes que generar
+Report.nrofReports = 1
+# Cantidad de segundos antes de comenzar la simulación
+Report.warmup = 0
+# Directorio base para generar los reportes
+Report.reportDir = reports/
+# Clase de reporte a usar. Las clases para reportes están en el directorio "report"
+Report.report1 = MessageStatsReport
