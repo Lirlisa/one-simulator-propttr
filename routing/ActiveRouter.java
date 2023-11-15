@@ -60,7 +60,7 @@ public abstract class ActiveRouter extends MessageRouter {
 		this.policy = new MessageTransferAcceptPolicy(s);
 		
 		this.deleteDelivered = s.getBoolean(DELETE_DELIVERED_S, false);
-		System.out.println("this.deleteDelivered: " + this.deleteDelivered);
+		
 		if (s.contains(EnergyModel.INIT_ENERGY_S)) {
 			this.energy = new EnergyModel(s);
 		} else {
@@ -385,7 +385,6 @@ public abstract class ActiveRouter extends MessageRouter {
 			Message m = t.getKey();
 			Connection con = t.getValue();
 			if (startTransfer(m, con) == RCV_OK) {
-                                
 				return t;
 			}
 		}
@@ -570,7 +569,7 @@ public abstract class ActiveRouter extends MessageRouter {
 	 */
 	public boolean hasEnergy() {
 		return this.energy == null || this.energy.getEnergy() > 0;
-	} 
+	}
 	
 	/**
 	 * Checks out all sending connections to finalize the ready ones 
@@ -595,7 +594,6 @@ public abstract class ActiveRouter extends MessageRouter {
 					con.finalizeTransfer();
 				} /* else: some other entity aborted transfer */
 				removeCurrent = true;
-                                
 			}
 			/* remove connections that have gone down */
 			else if (!con.isUp()) {

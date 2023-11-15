@@ -7,7 +7,7 @@ Scenario.name = propttr_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 # 43200s == 12h
-Scenario.endTime = 3600
+Scenario.endTime = 43200
 
 ## Interface-specific settings:
 # type : which interface class the interface belongs to
@@ -20,10 +20,10 @@ Scenario.endTime = 3600
 testInterface.type = SimpleBroadcastInterface
 # Transmit speed
 testInterface.transmitSpeed = 683
-testInterface.transmitRange = 500
+testInterface.transmitRange = 7
 
 # Define 6 different node groups
-Scenario.nrofHostGroups = 7
+Scenario.nrofHostGroups = 6
 
 ## Group-specific settings:
 # groupID : Group's identifier. Used as the prefix of host names
@@ -46,7 +46,7 @@ Scenario.nrofHostGroups = 7
 
 
 # Common settings for all groups
-Group.PropTTRRouter.TTR = 10000
+
 
 Group.movementModel = ShortestPathMapBasedMovement
 Group.router = PropTTRRouter
@@ -64,20 +64,20 @@ Group.nrofHosts = 40
 
 PointsOfInterest.poiFile1 = data/CentralPOIs.wkt
 PointsOfInterest.poiFile2 = data/WestPOIs.wkt
-
+PointsOfInterest.poiFile3 = data/ParkPOIs.wkt
 
 # group1 (pedestrians) specific settings
 Group1.groupID = p
 
 
-# group1 specific settings
+# group2 specific settings
 Group2.groupID = c
 Group2.pois = 1,0.5,2,0.5
 # cars can drive only on roads
 Group2.okMaps = 1
 # 10-50 km/h
 Group2.speed = 2.7, 13.9
-Group2.nrofHosts = 5
+Group2.nrofHosts = 20
 
 Group3.groupID = t
 Group3.bufferSize = 50M
@@ -89,47 +89,38 @@ Group3.speed = 7, 10
 Group3.nrofHosts = 2
 Group3.nrofInterfaces = 1
 
-Group4.groupID = a
-Group4.interface1 = testInterface
-Group4.pois = 1,0.5
-Group4.okMaps = 1
-Group4.speed = 2.7, 13.9
-Group4.nrofHosts = 5
-
-
 
 #estáticos
 
-Group5.groupID = bs1
+Group4.groupID = bsa
+Group4.router = PropTTRRouterCentral
+Group4.bufferSize = 500M
+Group4.speed = 0, 0
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 1200, 1000
+Group4.nrofHosts = 1
+Group4.interface1 = testInterface
+
+Group5.groupID = bsb
 Group5.router = PropTTRRouterCentral
 Group5.bufferSize = 500M
 Group5.speed = 0, 0
 Group5.movementModel = StationaryMovement
-Group5.nodeLocation = 1000, 1000
+Group5.nodeLocation = 500, 550
 Group5.nrofHosts = 1
 Group5.interface1 = testInterface
 
-Group6.groupID = bs2
+Group6.groupID = bsc
 Group6.router = PropTTRRouterCentral
 Group6.bufferSize = 500M
 Group6.speed = 0, 0
 Group6.movementModel = StationaryMovement
-Group6.nodeLocation = 500, 500
+Group6.nodeLocation = 2000, 2000
 Group6.nrofHosts = 1
 Group6.interface1 = testInterface
 
-Group7.groupID = bs3
-Group7.router = PropTTRRouterCentral
-Group7.bufferSize = 500M
-Group7.speed = 0, 0
-Group7.movementModel = StationaryMovement
-Group7.nodeLocation = 2000, 2000
-Group7.nrofHosts = 1
-Group7.interface1 = testInterface
-
 #MaxPropConfiguration
 #MaxPropRouter.alpha = 0.5
-MaxPropRouter.alpha = 0.5
 Group.deleteDelivered = true
 
 
@@ -144,7 +135,7 @@ Events1.interval = 25,35
 # Message sizes
 Events1.size = 100,200
 # range of message source/destination addresses
-Events1.hosts = 0,34
+Events1.hosts = 0,63
 # Message ID prefix
 Events1.prefix = M
 

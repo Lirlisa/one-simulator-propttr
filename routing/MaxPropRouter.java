@@ -88,9 +88,9 @@ public class MaxPropRouter extends ActiveRouter {
 	 * the given Settings object.
 	 * @param settings The settings object
 	 */
-	public MaxPropRouter(Settings settings) {   
+	public MaxPropRouter(Settings settings) {
 		super(settings);
-		Settings maxPropSettings = new Settings(MAXPROP_NS);
+		Settings maxPropSettings = new Settings(MAXPROP_NS);		
 		if (maxPropSettings.contains(ALPHA_S)) {
 			alpha = maxPropSettings.getDouble(ALPHA_S);
 		} else {

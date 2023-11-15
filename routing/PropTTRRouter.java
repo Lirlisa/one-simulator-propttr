@@ -382,16 +382,6 @@ public class PropTTRRouter extends ActiveRouter {
 			return; // nothing to transfer or is currently transferring 
 		}
                 
-                for (Connection con : getConnections()) {
-                    if (con.isMessageTransferred()) {
-                        if (con.getMessage() != null) {
-                            String id = con.getMessage().getId();
-                            transferDone(con);
-                            con.finalizeTransfer();
-                            this.deleteMessage(id, false);
-                        }
-                    }
-                }
 		
 		// try messages that could be delivered to final recipient
 		if (exchangeDeliverableMessages() != null) {
@@ -399,6 +389,22 @@ public class PropTTRRouter extends ActiveRouter {
 		}
 		
 		tryOtherMessages();	
+                /*
+                for (Connection con : getConnections()) {
+                    if (con.isMessageTransferred() && con.isInitiator(getHost())) {
+                        if (con.getMessage() != null) {
+                            String id = con.getMessage().getId();
+                            transferDone(con);
+                            con.finalizeTransfer();
+                            
+                            DTNHost recipient = con.getOtherNode(getHost());
+                            if (con.getMessage().getTo() != recipient) { 
+                                this.deleteMessage(id, false);
+                            }
+                            
+                        }
+                    }
+                }*/
 	}
 	
 	/**
