@@ -389,7 +389,6 @@ public class PropTTRRouter extends ActiveRouter {
 		}
 		
 		tryOtherMessages();	
-                /*
                 for (Connection con : getConnections()) {
                     if (con.isMessageTransferred() && con.isInitiator(getHost())) {
                         if (con.getMessage() != null) {
@@ -404,7 +403,7 @@ public class PropTTRRouter extends ActiveRouter {
                             
                         }
                     }
-                }*/
+                }
 	}
 	
 	/**

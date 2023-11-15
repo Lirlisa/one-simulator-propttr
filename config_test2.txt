@@ -3,7 +3,7 @@
 #
 
 ## Scenario settings
-Scenario.name = propttr_scenario
+Scenario.name = maxprop_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 # 43200s == 12h
@@ -49,7 +49,7 @@ Scenario.nrofHostGroups = 6
 
 
 Group.movementModel = ShortestPathMapBasedMovement
-Group.router = PropTTRRouter
+Group.router = MaxPropRouter
 Group.bufferSize = 5M
 Group.waitTime = 120, 300
 # All nodes have the test interface
@@ -93,7 +93,7 @@ Group3.nrofInterfaces = 1
 #estáticos
 
 Group4.groupID = bsa
-Group4.router = PropTTRRouterCentral
+Group4.router = MaxPropRouter
 Group4.bufferSize = 500M
 Group4.speed = 0, 0
 Group4.movementModel = StationaryMovement
@@ -102,7 +102,7 @@ Group4.nrofHosts = 1
 Group4.interface1 = testInterface
 
 Group5.groupID = bsb
-Group5.router = PropTTRRouterCentral
+Group5.router = MaxPropRouter
 Group5.bufferSize = 500M
 Group5.speed = 0, 0
 Group5.movementModel = StationaryMovement
@@ -111,7 +111,7 @@ Group5.nrofHosts = 1
 Group5.interface1 = testInterface
 
 Group6.groupID = bsc
-Group6.router = PropTTRRouterCentral
+Group6.router = MaxPropRouter
 Group6.bufferSize = 500M
 Group6.speed = 0, 0
 Group6.movementModel = StationaryMovement
@@ -158,20 +158,6 @@ MapBasedMovement.mapFile4 = data/shops.wkt
 
 ## Reports - all report names have to be valid report classes
 
-# how many reports to load
-Report.nrofReports = 2
-# length of the warm up period (simulated seconds)
-Report.warmup = 0
-# default directory of reports (can be overridden per Report with output setting)
-Report.reportDir = reports/
-# Report classes to load
-Report.report1 = ContactTimesReport
-Report.report2 = ConnectivityONEReport
-
-## Default settings for some routers settings
-ProphetRouter.secondsInTimeUnit = 30
-SprayAndWaitRouter.nrofCopies = 6
-SprayAndWaitRouter.binaryMode = true
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.
@@ -197,10 +183,12 @@ GUI.EventLogPanel.nrofEvents = 100
 
 # Reports - all report names have to be valid report classes
 # Cantidad de reportes que generar
-Report.nrofReports = 1
+Report.nrofReports = 3
 # Cantidad de segundos antes de comenzar la simulación
 Report.warmup = 0
 # Directorio base para generar los reportes
 Report.reportDir = reports/
 # Clase de reporte a usar. Las clases para reportes están en el directorio "report"
 Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = DistanceDelayReport
