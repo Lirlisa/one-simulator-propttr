@@ -11,7 +11,7 @@ Scenario.updateInterval = 0.1
 # el tiempo en segundos que debe durar la simulación (43200s == 12h)
 Scenario.endTime = 43200
 # cantidad de grupos de nodos
-Scenario.nrofHostGroups = 2
+Scenario.nrofHostGroups = 3
 
 ## Interface-specific settings:
 # se pueden crear todas las interfaces que se requieran con cualquier nombre
@@ -38,9 +38,11 @@ testInterface.transmitRange = 1000
 # configuraciones para todos los grupos en "Group" sin ningún número, si se quiere una configuración para un grupo especifico, debe ser "Group<id>", por ejemplo Group1, Group2, etc.
 
 # Describe la forma en que se mueven los nodos. Los modelos de movimientos están en el directorio "movement", existen muchos tipos de modelos de movimiento
-Group.movementModel = MapRouteMovement
+#Group.movementModel = MapRouteMovement
+Group.movementModel = ShortestPathMapAndTTRBasedMovement
+#Group.movementModel = RandomWaypoint
 # protocolo que usarán los nodos para enrutar los mensajes. Los protocolos están en el directorio "routing".
-Group.router = EpidemicRouter
+Group.router = PropTTRRouter
 # Tamaño de los buffers en bytes de cada nodo, es basicamente decir cuanta memoria tienen disponibles.
 Group.bufferSize = 5M
 # Par de número que representan la cantidad mínima y máxima de tiempo en segundos que los nodos se toman al llegar a destino (cuanto tiempo se quedan parados all llegar)
@@ -58,31 +60,47 @@ Group.msgTtl = 300
 Group.nrofHosts = 1
 #tipo de ruta
 Group.routeType = 2
+Group.pois = 1,1
 
 #configuraciones micro
 
 # Identdificador del grupo, es sólo una letra que se le asigna a esos nodos
 
 # Sirve para el modelo MapRouteMovement. Especifica qué nodos del mapa están ok para el grupo. Los mapas tienen grupos de nodos que se pueden visitar, se pueden dejar todos por defecto o elegir un subset de estos.
-Group.okMaps = 3
+Group.okMaps = 1
 # Especificar archivo de rutas, sirve para el modelo MapRouteMovement
-Group.routeFile = data/tram10.wkt
+#Group.routeFile = data/tram10.wkt
+#Group.routeFile = data/Valparaiso/tram.wkt
 
 #grupo 1
-Group1.groupID = p
+Group1.groupID = bs
 # velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
-Group1.speed = 0.5, 0.6
+Group1.es_central = true
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 5923 , 1993
+#dx = 1434788
+#dy = 660375
+
 #grupo 2
-Group2.groupID = b
-Group2.speed = 0.5, 0.6
+Group2.groupID = p
+Group2.speed = 6, 22
+Group2.default_ttr = 1000
+
+#grupo3
+Group3.groupID = k
+Group3.speed = 6, 22
+Group3.default_ttr = 1000
 
 #configuraciones especificas para MapBasedMovement
-MapBasedMovement.nrofMapFiles = 4
-MapBasedMovement.mapFile1 = data/roads.wkt
-MapBasedMovement.mapFile2 = data/main_roads.wkt
-MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
-MapBasedMovement.mapFile4 = data/shops.wkt
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/Valparaiso/roads_bigger.wkt
+#MapBasedMovement.mapFile1 = data/roads.wkt
+#MapBasedMovement.mapFile2 = data/main_roads.wkt
+#MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+#MapBasedMovement.mapFile4 = data/shops.wkt
+MovementModel.worldSize = 100000,100000
 
+PointsOfInterest.poiFile1 = data/Valparaiso/poi2.wkt
 
 ## Message creation parameters
 

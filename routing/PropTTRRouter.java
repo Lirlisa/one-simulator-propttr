@@ -19,10 +19,14 @@ import routing.maxprop.MeetingProbabilitySet;
 import routing.util.RoutingInfo;
 import util.Tuple;
 import core.Connection;
+import core.Coord;
 import core.DTNHost;
 import core.Message;
 import core.Settings;
-import core.SimError;
+
+import core.SimClock;
+import java.lang.Math;
+import java.util.Random;
 
 /**
  * Implementation of MaxProp router as described in 
@@ -38,32 +42,28 @@ import core.SimError;
  */
 public class PropTTRRouter extends ActiveRouter {
     /** Router's setting namespace ({@value})*/
-	public static final String PROPTTR_NS = "PropTTRRouter";
+	public static final String MAXPROP_NS = "PropTTRRouter";
 	/**
 	 * Meeting probability set maximum size -setting id ({@value}).
 	 * The maximum amount of meeting probabilities to store.  */
 	public static final String PROB_SET_MAX_SIZE_S = "probSetMaxSize";
     /** Default value for the meeting probability set maximum size ({@value}).*/
     public static final int DEFAULT_PROB_SET_MAX_SIZE = 50;
-    public static int probSetMaxSize;
-    
-        public List<Double> seenCentralTimes = new ArrayList<Double>();
-        public double simulationTime = 0;
-        public double averageSeenCentralTime = Double.POSITIVE_INFINITY;
+    private static int probSetMaxSize;
 
 	/** probabilities of meeting hosts */
-	public MeetingProbabilitySet probs;
+	private MeetingProbabilitySet probs;
 	/** meeting probabilities of all hosts from this host's point of view 
 	 * mapped using host's network address */
-	public Map<Integer, MeetingProbabilitySet> allProbs;
+	private Map<Integer, MeetingProbabilitySet> allProbs;
 	/** the cost-to-node calculator */
 	private MaxPropDijkstra dijkstra;	
 	/** IDs of the messages that are known to have reached the final dst */
-	public Set<String> ackedMessageIds;
+	private Set<String> ackedMessageIds;
 	/** mapping of the current costs for all messages. This should be set to
 	 * null always when the costs should be updated (a host is met or a new
 	 * message is received) */
-	public Map<Integer, Double> costsForMessages;
+	private Map<Integer, Double> costsForMessages;
 	/** From host of the last cost calculation */
 	private DTNHost lastCostFrom;
 	
@@ -88,41 +88,37 @@ public class PropTTRRouter extends ActiveRouter {
 	/** The default value for alpha */
 	public static final double DEFAULT_ALPHA = 1.0;
         
-        
-        /** The TTR parameter string*/
-	public static final String TTR_S = "TTR";
+        private long TTR;
+        private long defaultTTR;
 
-        /** The default value for alpha */
-	public static final double DEFAULT_TTR = 3600;
-        
-        /** Valor de TTR */
-        public double TTR;
+        private SimClock internalClock = SimClock.getInstance();
+        private double lastSimTime = 0;
+        private double missing_time = 0;
+        private boolean es_central;
 
 	/**
 	 * Constructor. Creates a new prototype router based on the settings in
 	 * the given Settings object.
 	 * @param settings The settings object
 	 */
-	public PropTTRRouter(Settings settings) {   
+	public PropTTRRouter(Settings settings) {
             super(settings);
-            Settings propTTRSettings = new Settings(PROPTTR_NS);
-            if (propTTRSettings.contains(ALPHA_S)) {
-                    alpha = propTTRSettings.getDouble(ALPHA_S);
+            es_central = settings.getBoolean("es_central", false);
+            TTR = settings.getInt("default_ttr", 10000);
+            defaultTTR = 100*TTR;
+            
+            Settings maxPropSettings = new Settings(MAXPROP_NS);		
+            if (maxPropSettings.contains(ALPHA_S)) {
+                    alpha = maxPropSettings.getDouble(ALPHA_S);
             } else {
                     alpha = DEFAULT_ALPHA;
             }
-            
-            Settings pttrSettings = new Settings(PROPTTR_NS);
-            if (pttrSettings.contains(PROB_SET_MAX_SIZE_S)) {
-                probSetMaxSize = pttrSettings.getInt(PROB_SET_MAX_SIZE_S);
+
+            Settings mpSettings = new Settings(MAXPROP_NS);
+            if (mpSettings.contains(PROB_SET_MAX_SIZE_S)) {
+                probSetMaxSize = mpSettings.getInt(PROB_SET_MAX_SIZE_S);
             } else {
                 probSetMaxSize = DEFAULT_PROB_SET_MAX_SIZE;
-            }
-            
-            if (pttrSettings.contains(TTR_S)) {
-                TTR = pttrSettings.getDouble(TTR_S);
-            } else {
-                TTR = DEFAULT_TTR;
             }
 	}
 	
@@ -139,51 +135,16 @@ public class PropTTRRouter extends ActiveRouter {
 		this.ackedMessageIds = new HashSet<String>();
 		this.avgSamples = new int[BYTES_TRANSFERRED_AVG_SAMPLES];
 		this.sentMessages = new HashMap<DTNHost, Set<String>>();
-                this.TTR = r.TTR;
-	}
-        
-        /**
-         * Get TTR Value from a node
-         */
-        public double getTTRVal() {
-            return this.TTR;
-        }
-        
-        public void setTTRVal(double val) {
-            this.TTR = val;
-        }
-        
-        public void updateAvgSeenCentralTime() {
-            if(this.seenCentralTimes.size() == 0) return;
-            double average = 0;
-            for(double time: this.seenCentralTimes)
-                average += time;
-            
-            this.averageSeenCentralTime = average / this.seenCentralTimes.size();
-        }
-        
-        /**
-	 * Start sending a message to another host.
-	 * @param id Id of the message to send
-	 * @param to The host to send the message to
-	 */
-        @Override
-	public void sendMessage(String id, DTNHost to) {
-                System.out.println("mensajin");
-		Message m = getMessage(id);
-		Message m2;
                 
-		if (m == null) throw new SimError("no message for id " +
-				id + " to send at " + getHost());
- 
-		m2 = m.replicate();	// send a replicate of the message
-		to.receiveMessage(m2, getHost());
-	}
+                this.TTR = r.getTTR();
+                this.defaultTTR = r.getDefaultTTR();
+                this.es_central = r.esEstacionBase();
+	}	
 
 	@Override
 	public void changedConnection(Connection con) {
 		super.changedConnection(con);
-		
+		System.out.println("Flag 0");
 		if (con.isUp()) { // new connection
 			this.costsForMessages = null; // invalidate old cost estimates
 			
@@ -194,51 +155,39 @@ public class PropTTRRouter extends ActiveRouter {
 				DTNHost otherHost = con.getOtherNode(getHost());
 				MessageRouter mRouter = otherHost.getRouter();
 
-				assert (mRouter instanceof PropTTRRouter) || (mRouter instanceof PropTTRRouterCentral): "PropTTR only works "+ 
+				assert mRouter instanceof PropTTRRouter : "MaxProp only works "+ 
 				" with other routers of same type";
+				PropTTRRouter otherRouter = (PropTTRRouter)mRouter;
                                 
-                                if(mRouter instanceof PropTTRRouterCentral) {
-                                    this.seenCentralTimes.add(this.simulationTime);
-                                    this.updateAvgSeenCentralTime();
-                                    this.setTTRVal(this.averageSeenCentralTime);
+                                System.out.println("Flag 1");
+                                System.out.println(otherRouter.esEstacionBase());
+                                System.out.println(esEstacionBase());
+                                if(otherRouter.esEstacionBase() && !esEstacionBase()) {
+                                    setTTR(defaultTTR);
+                                    System.out.println("Flag 2");
+                                } else if(!otherRouter.esEstacionBase() && esEstacionBase()) {
+                                    otherRouter.setTTR(otherRouter.getDefaultTTR());
+                                    System.out.println("Flag 3");
                                 }
                                 
-                                PropTTRRouter otherRouter = (PropTTRRouter)mRouter;
-                                
-                                DTNHost senderHost;
-                                DTNHost receiverHost;
-                                PropTTRRouter senderRouter;
-                                PropTTRRouter receiverRouter;
-                                if(this.getTTRVal() < otherRouter.getTTRVal()) {
-                                    senderHost = otherHost;
-                                    senderRouter = otherRouter;
-                                    receiverHost = this.getHost();
-                                    receiverRouter = (PropTTRRouter)receiverHost.getRouter();
-                                } else {
-                                    senderHost = this.getHost();
-                                    senderRouter = (PropTTRRouter)senderHost.getRouter();
-                                    receiverHost = otherHost;
-                                    receiverRouter = otherRouter;
-                                }
-				
 				
 				/* exchange ACKed message data */
-				senderRouter.ackedMessageIds.addAll(receiverRouter.ackedMessageIds);
-				receiverRouter.ackedMessageIds.addAll(senderRouter.ackedMessageIds);
-				senderRouter.deleteAckedMessages();
-				receiverRouter.deleteAckedMessages();
+				this.ackedMessageIds.addAll(otherRouter.ackedMessageIds);
+				otherRouter.ackedMessageIds.addAll(this.ackedMessageIds);
+				deleteAckedMessages();
+				otherRouter.deleteAckedMessages();
 				
 				/* update both meeting probabilities */
-				senderRouter.probs.updateMeetingProbFor(receiverHost.getAddress());
-				receiverRouter.probs.updateMeetingProbFor(senderHost.getAddress());
+				probs.updateMeetingProbFor(otherHost.getAddress());
+				otherRouter.probs.updateMeetingProbFor(getHost().getAddress());
 				
 				/* exchange the transitive probabilities */
-				senderRouter.updateTransitiveProbs(receiverRouter.allProbs);
-				receiverRouter.updateTransitiveProbs(senderRouter.allProbs);
-				senderRouter.allProbs.put(receiverHost.getAddress(),
-						receiverRouter.probs.replicate());
-				receiverRouter.allProbs.put(senderHost.getAddress(),
-						senderRouter.probs.replicate());
+				this.updateTransitiveProbs(otherRouter.allProbs);
+				otherRouter.updateTransitiveProbs(this.allProbs);
+				this.allProbs.put(otherHost.getAddress(),
+						otherRouter.probs.replicate());
+				otherRouter.allProbs.put(getHost().getAddress(),
+						this.probs.replicate());
 			}
 		}
 		else {
@@ -253,7 +202,7 @@ public class PropTTRRouter extends ActiveRouter {
 	 * if the given sets have more recent updates.
 	 * @param p Mapping of the values of the other host
 	 */
-	public void updateTransitiveProbs(Map<Integer, MeetingProbabilitySet> p) {
+	private void updateTransitiveProbs(Map<Integer, MeetingProbabilitySet> p) {
 		for (Map.Entry<Integer, MeetingProbabilitySet> e : p.entrySet()) {
 			MeetingProbabilitySet myMps = this.allProbs.get(e.getKey()); 
 			if (myMps == null || 
@@ -266,7 +215,7 @@ public class PropTTRRouter extends ActiveRouter {
 	/**
 	 * Deletes the messages from the message buffer that are known to be ACKed
 	 */
-	public void deleteAckedMessages() {
+	private void deleteAckedMessages() {
 		for (String id : this.ackedMessageIds) {
 			if (this.hasMessage(id) && !isSending(id)) {
 				this.deleteMessage(id, false);
@@ -317,7 +266,7 @@ public class PropTTRRouter extends ActiveRouter {
 	 * transfer opportunity.
 	 * @param newValue The new value to add to the estimate
 	 */
-	public void updateTransferredBytesAvg(int newValue) {
+	private void updateTransferredBytesAvg(int newValue) {
 		int realCount = 0;
 		int sum = 0;
 		
@@ -355,7 +304,6 @@ public class PropTTRRouter extends ActiveRouter {
 	protected Message getNextMessageToRemove(boolean excludeMsgBeingSent) {
 		Collection<Message> messages = this.getMessageCollection();
 		List<Message> validMessages = new ArrayList<Message>();
-                System.out.println("getNextMessageToRemove");
 
 		for (Message m : messages) {	
 			if (excludeMsgBeingSent && isSending(m.getId())) {
@@ -373,15 +321,19 @@ public class PropTTRRouter extends ActiveRouter {
 	@Override
 	public void update() {
 		super.update();
+                double currentSimTime = internalClock.getTime();
+                missing_time += currentSimTime - lastSimTime;
+                double floor = Math.floor(missing_time);
+                if(floor >= 1) {
+                    updateTTR((long)floor);
+                    missing_time -= floor > missing_time ? 0 : missing_time - floor;
+                }
+                lastSimTime = currentSimTime;
                 
-                simulationTime += 0.1;
-                setTTRVal(getTTRVal()-0.1);
-                if(getTTRVal() <= 0) setTTRVal(86400);
                 
 		if (!canStartTransfer() ||isTransferring()) {
 			return; // nothing to transfer or is currently transferring 
 		}
-                
 		
 		// try messages that could be delivered to final recipient
 		if (exchangeDeliverableMessages() != null) {
@@ -389,21 +341,6 @@ public class PropTTRRouter extends ActiveRouter {
 		}
 		
 		tryOtherMessages();	
-                for (Connection con : getConnections()) {
-                    if (con.isMessageTransferred() && con.isInitiator(getHost())) {
-                        if (con.getMessage() != null) {
-                            String id = con.getMessage().getId();
-                            transferDone(con);
-                            con.finalizeTransfer();
-                            
-                            DTNHost recipient = con.getOtherNode(getHost());
-                            if (con.getMessage().getTo() != recipient) { 
-                                this.deleteMessage(id, false);
-                            }
-                            
-                        }
-                    }
-                }
 	}
 	
 	/**
@@ -448,7 +385,7 @@ public class PropTTRRouter extends ActiveRouter {
 	 * hop counts and their delivery probability
 	 * @return The return value of {@link #tryMessagesForConnected(List)}
 	 */
-	public Tuple<Message, Connection> tryOtherMessages() {
+	private Tuple<Message, Connection> tryOtherMessages() {
 		List<Tuple<Message, Connection>> messages = 
 			new ArrayList<Tuple<Message, Connection>>(); 
 	
@@ -457,18 +394,20 @@ public class PropTTRRouter extends ActiveRouter {
 		/* for all connected hosts that are not transferring at the moment,
 		 * collect all the messages that could be sent */
 		for (Connection con : getConnections()) {
-       
-                        DTNHost other = con.getOtherNode(getHost());
+			DTNHost other = con.getOtherNode(getHost());
 			PropTTRRouter othRouter = (PropTTRRouter)other.getRouter();
                         
-                        if(othRouter.getTTRVal() > this.getTTRVal()) continue;
+                        // No se envían mensajes a nodos con TTR mayor
+                        if(!othRouter.esEstacionBase() && othRouter.getTTR() > getTTR()) {
+                            continue;
+                        }
                         
 			Set<String> sentMsgIds = this.sentMessages.get(other);
 			
 			if (othRouter.isTransferring()) {
 				continue; // skip hosts that are transferring
 			}
-                        
+			
 			for (Message m : msgCollection) {
 				/* skip messages that the other host has or that have
 				 * passed the other host */
@@ -478,9 +417,9 @@ public class PropTTRRouter extends ActiveRouter {
 				}
 				/* skip message if this host has already sent it to the other
 				   host (regardless of if the other host still has it) */
-				/*if (sentMsgIds != null && sentMsgIds.contains(m.getId())) {
+				if (sentMsgIds != null && sentMsgIds.contains(m.getId())) {
 					continue;
-				}*/
+				}
 				/* message was a good candidate for sending */
 				messages.add(new Tuple<Message, Connection>(m,con));
 			}			
@@ -675,7 +614,6 @@ public class PropTTRRouter extends ActiveRouter {
 			DTNHost from1 = tuple1.getValue().getOtherNode(getHost());
 			DTNHost from2 = tuple2.getValue().getOtherNode(getHost());
 			
-                        
 			comp = new MaxPropComparator(threshold, from1, from2);
 			return comp.compare(tuple1.getKey(), tuple2.getKey());
 		}
@@ -699,9 +637,7 @@ public class PropTTRRouter extends ActiveRouter {
 		top.addMoreInfo(ri);
 		top.addMoreInfo(new RoutingInfo("Avg transferred bytes: " + 
 				this.avgTransferredBytes));
-                top.addMoreInfo(new RoutingInfo("TTR: " + this.getTTRVal()));
-                top.addMoreInfo(new RoutingInfo("Avg. seen central: " + this.averageSeenCentralTime));
-                
+
 		return top;
 	}
 	
@@ -710,4 +646,24 @@ public class PropTTRRouter extends ActiveRouter {
 		PropTTRRouter r = new PropTTRRouter(this);
 		return r;
 	}
+        
+        public long getTTR() {
+            return TTR;
+        }
+        
+        public long getDefaultTTR() {
+            return defaultTTR;
+        }
+        
+        public void setTTR(long _ttr) {
+            TTR = _ttr;
+        }
+        
+        private void updateTTR(long _ttr) {
+            this.TTR = _ttr > this.TTR?0:this.TTR - _ttr;
+        }
+        
+        public boolean esEstacionBase() {
+            return es_central;
+        }
 }

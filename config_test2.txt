@@ -62,9 +62,9 @@ Group.msgTtl = 300
 
 Group.nrofHosts = 40
 
-PointsOfInterest.poiFile1 = data/CentralPOIs.wkt
-PointsOfInterest.poiFile2 = data/WestPOIs.wkt
-PointsOfInterest.poiFile3 = data/ParkPOIs.wkt
+#PointsOfInterest.poiFile1 = data/CentralPOIs.wkt
+#PointsOfInterest.poiFile2 = data/WestPOIs.wkt
+#PointsOfInterest.poiFile3 = data/ParkPOIs.wkt
 
 # group1 (pedestrians) specific settings
 Group1.groupID = p
@@ -72,7 +72,7 @@ Group1.groupID = p
 
 # group2 specific settings
 Group2.groupID = c
-Group2.pois = 1,0.5,2,0.5
+#Group2.pois = 1,0.5,2,0.5
 # cars can drive only on roads
 Group2.okMaps = 1
 # 10-50 km/h
@@ -81,8 +81,6 @@ Group2.nrofHosts = 20
 
 Group3.groupID = t
 Group3.bufferSize = 50M
-Group3.movementModel = MapRouteMovement
-Group3.routeFile = data/tram3.wkt
 Group3.routeType = 1
 Group3.waitTime = 10, 30
 Group3.speed = 7, 10
@@ -149,12 +147,12 @@ MovementModel.worldSize = 4500, 3400
 MovementModel.warmup = 1000
 
 ## Map based movement -movement model specific settings
-MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.nrofMapFiles = 1
 
-MapBasedMovement.mapFile1 = data/roads.wkt
-MapBasedMovement.mapFile2 = data/main_roads.wkt
-MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
-MapBasedMovement.mapFile4 = data/shops.wkt
+MapBasedMovement.mapFile1 = data/Santiago/roads_final.wkt
+#MapBasedMovement.mapFile2 = data/main_roads.wkt
+#MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+#MapBasedMovement.mapFile4 = data/shops.wkt
 
 ## Reports - all report names have to be valid report classes
 
@@ -168,13 +166,13 @@ Optimization.randomizeUpdateOrder = true
 ## GUI settings
 
 # GUI underlay image settings
-GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.fileName = data/Santiago/santiago_foto.png
 # Image offset in pixels (x, y)
-GUI.UnderlayImage.offset = 64, 20
+#GUI.UnderlayImage.offset = 64, 20
 # Scaling factor for the image
-GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.scale = 400.75
 # Image rotation (radians)
-GUI.UnderlayImage.rotate = -0.015
+#GUI.UnderlayImage.rotate = -0.015
 
 # how many events to show in the log panel (default = 30)
 GUI.EventLogPanel.nrofEvents = 100
