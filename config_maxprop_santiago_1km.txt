@@ -1,4 +1,4 @@
-Scenario.name = santiago_epidemic_1km_scenario
+Scenario.name = santiago_maxprop_1km_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 Scenario.endTime = 43200
@@ -10,7 +10,7 @@ loraInterface.transmitRange = 1000
 
 
 Group.movementModel = ShortestPathMapBasedMovement
-Group.router = EpidemicRouter
+Group.router = MaxPropRouter
 Group.bufferSize = 5M
 Group.waitTime = 200,800
 Group.nrofInterfaces = 1

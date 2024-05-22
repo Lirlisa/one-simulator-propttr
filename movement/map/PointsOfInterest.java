@@ -65,7 +65,6 @@ public class PointsOfInterest {
 		this.okMapNodeTypes = okMapNodeTypes;
 		this.rng = rng;
 		readPois(settings);
-                System.out.println(poiLists);
 	}
 	
 	/**
