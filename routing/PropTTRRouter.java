@@ -144,7 +144,6 @@ public class PropTTRRouter extends ActiveRouter {
 	@Override
 	public void changedConnection(Connection con) {
 		super.changedConnection(con);
-		System.out.println("Flag 0");
 		if (con.isUp()) { // new connection
 			this.costsForMessages = null; // invalidate old cost estimates
 			
@@ -159,15 +158,10 @@ public class PropTTRRouter extends ActiveRouter {
 				" with other routers of same type";
 				PropTTRRouter otherRouter = (PropTTRRouter)mRouter;
                                 
-                                System.out.println("Flag 1");
-                                System.out.println(otherRouter.esEstacionBase());
-                                System.out.println(esEstacionBase());
                                 if(otherRouter.esEstacionBase() && !esEstacionBase()) {
                                     setTTR(defaultTTR);
-                                    System.out.println("Flag 2");
                                 } else if(!otherRouter.esEstacionBase() && esEstacionBase()) {
                                     otherRouter.setTTR(otherRouter.getDefaultTTR());
-                                    System.out.println("Flag 3");
                                 }
                                 
 				
@@ -390,7 +384,6 @@ public class PropTTRRouter extends ActiveRouter {
 			new ArrayList<Tuple<Message, Connection>>(); 
 	
 		Collection<Message> msgCollection = getMessageCollection();
-		
 		/* for all connected hosts that are not transferring at the moment,
 		 * collect all the messages that could be sent */
 		for (Connection con : getConnections()) {
@@ -432,7 +425,12 @@ public class PropTTRRouter extends ActiveRouter {
 		/* sort the message-connection tuples according to the criteria
 		 * defined in MaxPropTupleComparator */ 
 		Collections.sort(messages, new MaxPropTupleComparator(calcThreshold()));
-		return tryMessagesForConnected(messages);	
+                Tuple<Message, Connection> result = tryMessagesForConnected(messages);
+                if(result != null && result.getKey().getHopCount() > 1) {
+                    // eliminar copias con más de un salto
+                    deleteMessage(result.getKey().getId(), false);
+                }
+		return result;	
 	}
 	
 	/**

@@ -3,7 +3,7 @@
 #
 ## Scenario settings
 # nombre de la simulación (nombre del reporte)
-Scenario.name = test_scenario
+Scenario.name = valparaiso_scenario_1km
 # usualmente en true, esto simula conecciones a menos que se quieran usar trazas externas
 Scenario.simulateConnections = true
 # el tiempo en segundos que la función update() en MessageRouter.java se llama
@@ -11,7 +11,7 @@ Scenario.updateInterval = 0.1
 # el tiempo en segundos que debe durar la simulación (43200s == 12h)
 Scenario.endTime = 43200
 # cantidad de grupos de nodos
-Scenario.nrofHostGroups = 3
+Scenario.nrofHostGroups = 8
 
 ## Interface-specific settings:
 # se pueden crear todas las interfaces que se requieran con cualquier nombre
@@ -21,17 +21,17 @@ Scenario.nrofHostGroups = 3
 # transmitSpeed : transmit speed of the interface (bytes per second)
 # transmitRange : range of the interface (meters)
 
-# interfaz test
+# interfaz lora
 #
 # type es la clase de interfaz implementada, vienen 3 interfaces con ONE simulator
 # -DistanceCapacityInterface: tiene en cuenta la distancia entre los nodos para determinar la capacidad de los links. LAs velocidades se entregan como ujna lista separada por comas
 # -InterferenceLimitedInterface: bit-rate variable que depende de la cantidad de estaciones de transmisión aledañas.
 # -SimpleBroadcastInterface: bit-rate constante con un transmisión a la vez.
-testInterface.type = SimpleBroadcastInterface
+loraInterface.type = SimpleBroadcastInterface
 # velocidad de transmisión en *Bytes* por segundo (2 Mbps = 250kBps)
-testInterface.transmitSpeed = 250k
+loraInterface.transmitSpeed = 3k
 #rango de la interfaz en metros
-testInterface.transmitRange = 1000
+loraInterface.transmitRange = 1000
 
 
 # Common settings for all groups
@@ -52,10 +52,10 @@ Group.waitTime = 0, 120
 #cantidad de interfaces que pueden usar
 Group.nrofInterfaces = 1
 # se define la interfaz a usar, en caso de usar más de una, las siguientes interfaces se definen como interface2, interface3, etc.
-Group.interface1 = testInterface
+Group.interface1 = loraInterface
 
 # time to live de los mensajes del grupo
-Group.msgTtl = 300
+Group.msgTtl = 7200
 # número de nodos por grupo
 Group.nrofHosts = 1
 #tipo de ruta
@@ -72,24 +72,69 @@ Group.okMaps = 1
 #Group.routeFile = data/tram10.wkt
 #Group.routeFile = data/Valparaiso/tram.wkt
 
+
 #grupo 1
-Group1.groupID = bs
+Group1.groupID = bs1_
 # velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
 Group1.es_central = true
 Group1.movementModel = StationaryMovement
-Group1.nodeLocation = 5923 , 1993
+Group1.nodeLocation = 5922, 1993
+Group1.nrofHosts = 1
 #dx = 1434788
 #dy = 660375
 
 #grupo 2
-Group2.groupID = p
-Group2.speed = 6, 22
-Group2.default_ttr = 1000
+Group2.groupID = bs2_
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group2.es_central = true
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 9295, 3450
+Group2.nrofHosts = 1
 
-#grupo3
-Group3.groupID = k
-Group3.speed = 6, 22
-Group3.default_ttr = 1000
+#grupo 3
+Group3.groupID = bs3_
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group3.es_central = true
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 8041, 4726
+Group3.nrofHosts = 1
+
+#grupo 4
+Group4.groupID = bs4_
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group4.es_central = true
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 3768, 4274
+Group4.interface1 = loraInterface
+Group4.nrofHosts = 1
+
+#grupo 5
+Group5.groupID = bs5_
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group5.es_central = true
+Group5.movementModel = StationaryMovement
+Group5.nodeLocation = 6917, 8096
+Group5.nrofHosts = 1
+
+#grupo 6
+Group6.groupID = bs6_
+# velocidad en metros por segundo mínima y máxima a la que se mueven los nodos
+Group6.es_central = true
+Group6.movementModel = StationaryMovement
+Group6.nodeLocation = 9939, 1172
+Group6.nrofHosts = 1
+
+#grupo 7
+Group7.groupID = p
+Group7.speed = 6, 22
+Group7.default_ttr = 7200
+Group7.nrofHosts = 5
+
+#grupo8
+Group8.groupID = a
+Group8.speed = 6, 22
+Group8.default_ttr = 7200
+Group8.nrofHosts = 5
 
 #configuraciones especificas para MapBasedMovement
 MapBasedMovement.nrofMapFiles = 1
@@ -113,9 +158,9 @@ Events1.class = MessageEventGenerator
 # intervalo en segundos que indica cada cuanto se crean nuevos eventos
 Events1.interval = 25,35
 # Tamaño de los mensajes en Bytes
-Events1.size = 100,200
+Events1.size = 150,200
 # Rango de direcciones de los nodos que generan eventos, por ejemplo si se quiere que los nodos del 1 al 5 generen eventos se escribe "1,5"
-Events1.hosts = 0,2
+Events1.hosts = 0,15
 # Identificador del evento
 Events1.prefix = M
 

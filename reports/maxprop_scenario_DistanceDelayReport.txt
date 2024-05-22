@@ -1,2 +1,0 @@
-# Scenario maxprop_scenario
-# distance at msg send, delivery time, hop count, MSG_ID

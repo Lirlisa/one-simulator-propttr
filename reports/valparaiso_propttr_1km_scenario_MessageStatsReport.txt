@@ -1,0 +1,20 @@
+Message stats for scenario valparaiso_propttr_1km_scenario
+sim_time: 43200.1000
+created: 1465
+started: 15344
+relayed: 15344
+aborted: 0
+dropped: 0
+removed: 14601
+delivered: 1202
+delivery_prob: 0.8205
+response_prob: 0.0000
+overhead_ratio: 11.7654
+latency_avg: 1297.1870
+latency_med: 659.9000
+hopcount_avg: 2.1073
+hopcount_med: 2
+buffertime_avg: 865.5641
+buffertime_med: 399.4000
+rtt_avg: NaN
+rtt_med: NaN
