@@ -1,4 +1,4 @@
-Scenario.name = santiago_maxprop_1km_scenario
+Scenario.name = santiago_maxprop_200m_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 Scenario.endTime = 43200
@@ -6,7 +6,7 @@ Scenario.nrofHostGroups = 12
 
 loraInterface.type = SimpleBroadcastInterface
 loraInterface.transmitSpeed = 3k
-loraInterface.transmitRange = 1000
+loraInterface.transmitRange = 200
 
 
 Group.movementModel = ShortestPathMapBasedMovement
