@@ -1,0 +1,20 @@
+Message stats for scenario config_maxprop_valparaiso_1km_menosmsj_1
+sim_time: 43200.1000
+created: 1465
+started: 29927
+relayed: 29912
+aborted: 13
+dropped: 0
+removed: 29049
+delivered: 1425
+delivery_prob: 0.9727
+response_prob: 0.0000
+overhead_ratio: 19.9909
+latency_avg: 1171.1802
+latency_med: 802.0000
+hopcount_avg: 3.4709
+hopcount_med: 3
+buffertime_avg: 1152.2040
+buffertime_med: 570.5000
+rtt_avg: NaN
+rtt_med: NaN

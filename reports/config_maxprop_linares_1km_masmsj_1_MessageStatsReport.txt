@@ -1,0 +1,20 @@
+Message stats for scenario config_maxprop_linares_1km_masmsj_1
+sim_time: 43200.1000
+created: 2214
+started: 66383
+relayed: 66355
+aborted: 28
+dropped: 0
+removed: 66245
+delivered: 2211
+delivery_prob: 0.9986
+response_prob: 0.0000
+overhead_ratio: 29.0113
+latency_avg: 95.2474
+latency_med: 37.7000
+hopcount_avg: 3.4342
+hopcount_med: 3
+buffertime_avg: 111.5215
+buffertime_med: 39.1000
+rtt_avg: NaN
+rtt_med: NaN
