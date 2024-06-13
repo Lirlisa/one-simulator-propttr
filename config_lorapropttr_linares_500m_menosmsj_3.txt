@@ -1,0 +1,95 @@
+Scenario.name = config_lorapropttr_linares_500m_menosmsj_3
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 6
+
+loraInterface.type = SimpleBroadcastInterface
+loraInterface.transmitSpeed = 1700
+loraInterface.transmitRange = 500
+
+
+Group.router = LoRaPropTTRRouter
+Group.bufferSize = 5M
+Group.waitTime = 200,800
+Group.nrofInterfaces = 1
+Group.interface1 = loraInterface
+Group.msgTtl = 21600
+Group.nrofHosts = 1
+Group.routeType = 2
+Group.pois = 1,1
+Group.okMaps = 1
+
+
+#grupo 1
+Group1.groupID = bs1_
+Group1.es_central = true
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 6752,1260
+Group1.nrofHosts = 1
+Group1.interface1 = loraInterface
+#dx = 1434788
+#dy = 660375
+
+#grupo 2
+Group2.groupID = bs2_
+Group2.es_central = true
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 3268, 2826
+Group2.nrofHosts = 1
+Group2.interface1 = loraInterface
+
+#grupo 3
+Group3.groupID = bs3_
+Group3.es_central = true
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 2101, 3499
+Group3.nrofHosts = 1
+Group3.interface1 = loraInterface
+
+#grupo 4
+Group4.groupID = p
+Group4.speed = 6, 22
+Group4.default_ttr = 7200
+Group4.nrofHosts = 5
+Group4.movementModel = ShortestPathMapAndTTRBasedMovement
+Group4.interface1 = loraInterface
+
+#grupo5
+Group5.groupID = a
+Group5.speed = 6, 22
+Group5.default_ttr = 7200
+Group5.nrofHosts = 5
+Group5.movementModel = ShortestPathMapAndTTRBasedMovement
+Group5.interface1 = loraInterface
+
+#grupo6
+Group6.groupID = b
+Group6.speed = 6, 22
+Group6.default_ttr = 7200
+Group6.nrofHosts = 5
+Group6.movementModel = ShortestPathMapAndTTRBasedMovement
+Group6.interface1 = loraInterface
+
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/Linares/roads_bigger.wkt
+MovementModel.worldSize = 100000,100000
+
+
+PointsOfInterest.poiFile1 = data/Linares/poi.wkt
+
+
+Events.nrof = 1
+Events1.class = MessageEventGeneratorWithCompression
+MovementModel.rngSeed = 3
+Events1.interval = 25,35
+Events1.size = 150,200
+Events1.hosts = 0,17
+Events1.prefix = M
+
+
+Report.nrofReports = 1
+Report.warmup = 0
+Report.reportDir = reports/
+Report.report1 = MessageStatsReport

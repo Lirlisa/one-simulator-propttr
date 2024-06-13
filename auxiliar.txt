@@ -1,0 +1,7 @@
+Events1.interval = 15,25
+Events1.interval = 25,35
+
+
+MovementModel.rngSeed = 1
+MovementModel.rngSeed = 2
+MovementModel.rngSeed = 3
