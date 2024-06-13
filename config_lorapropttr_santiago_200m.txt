@@ -1,16 +1,16 @@
-Scenario.name = santiago_epidemic_1km_scenario
+Scenario.name = santiago_propttr_200m_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 Scenario.endTime = 43200
 Scenario.nrofHostGroups = 12
 
 loraInterface.type = SimpleBroadcastInterface
-loraInterface.transmitSpeed = 3k
-loraInterface.transmitRange = 500
+loraInterface.transmitSpeed = 1700
+loraInterface.transmitRange = 200
 
 
-Group.movementModel = ShortestPathMapBasedMovement
-Group.router = EpidemicRouter
+Group.movementModel = ShortestPathMapAndTTRBasedMovement
+Group.router = LoRaPropTTRRouter
 Group.bufferSize = 5M
 Group.waitTime = 200,800
 Group.nrofInterfaces = 1
@@ -18,7 +18,7 @@ Group.interface1 = loraInterface
 Group.msgTtl = 21600
 Group.nrofHosts = 1
 Group.routeType = 2
-Group.pois = 1,0.2
+Group.pois = 1,1
 Group.okMaps = 1
 
 
@@ -89,16 +89,19 @@ Group9.nrofHosts = 1
 #grupo 10
 Group10.groupID = p
 Group10.speed = 6, 22
+Group10.default_ttr = 7200
 Group10.nrofHosts = 5
 
 #grupo11
 Group11.groupID = a
 Group11.speed = 6, 22
+Group11.default_ttr = 7200
 Group11.nrofHosts = 5
 
 #grupo12
 Group12.groupID = b
 Group12.speed = 6, 22
+Group12.default_ttr = 7200
 Group12.nrofHosts = 5
 
 
@@ -111,7 +114,7 @@ PointsOfInterest.poiFile1 = data/Santiago/poi.wkt
 
 
 Events.nrof = 1
-Events1.class = MessageEventGenerator
+Events1.class = MessageEventGeneratorWithCompression
 Events1.interval = 25,35
 Events1.size = 150,200
 Events1.hosts = 0,23

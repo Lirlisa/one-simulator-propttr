@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,7 +27,6 @@ import core.Settings;
 
 import core.SimClock;
 import java.lang.Math;
-import java.util.Random;
 
 /**
  * Implementation of MaxProp router as described in 
@@ -40,9 +40,9 @@ import java.util.Random;
  * algorithm.  Refer to Karvo and Ott, <I>Time Scales and Delay-Tolerant Routing 
  * Protocols</I> Chants, 2008 
  */
-public class PropTTRRouter extends ActiveRouter {
+public class LoRaPropTTRRouter extends ActiveRouter {
     /** Router's setting namespace ({@value})*/
-	public static final String MAXPROP_NS = "PropTTRRouter";
+	public static final String MAXPROP_NS = "LoRaPropTTRRouter";
 	/**
 	 * Meeting probability set maximum size -setting id ({@value}).
 	 * The maximum amount of meeting probabilities to store.  */
@@ -95,13 +95,17 @@ public class PropTTRRouter extends ActiveRouter {
         private double lastSimTime = 0;
         private double missing_time = 0;
         private boolean es_central;
+        
+        /** Set que contiene las probabilidades pendientes por entregar*/
+        private HashMap<String, LinkedList<HashMap<Integer, MeetingProbabilitySet>>> set_con;
+        private HashMap<String, LinkedList<MeetingProbabilitySet>> set_probs_propias;
 
 	/**
 	 * Constructor. Creates a new prototype router based on the settings in
 	 * the given Settings object.
 	 * @param settings The settings object
 	 */
-	public PropTTRRouter(Settings settings) {
+	public LoRaPropTTRRouter(Settings settings) {
             super(settings);
             es_central = settings.getBoolean("es_central", false);
             TTR = settings.getInt("default_ttr", 10000);
@@ -126,7 +130,7 @@ public class PropTTRRouter extends ActiveRouter {
 	 * Copy constructor. Creates a new router based on the given prototype.
 	 * @param r The router prototype where setting values are copied from
 	 */
-	protected PropTTRRouter(PropTTRRouter r) {
+	protected LoRaPropTTRRouter(LoRaPropTTRRouter r) {
 		super(r);
 		this.alpha = r.alpha;
 		this.probs = new MeetingProbabilitySet(probSetMaxSize, this.alpha);
@@ -139,6 +143,8 @@ public class PropTTRRouter extends ActiveRouter {
                 this.TTR = r.getTTR();
                 this.defaultTTR = r.getDefaultTTR();
                 this.es_central = r.esEstacionBase();
+                this.set_con = new HashMap<String, LinkedList<HashMap<Integer, MeetingProbabilitySet>>>();
+                this.set_probs_propias = new HashMap<String, LinkedList<MeetingProbabilitySet>>();
 	}	
 
 	@Override
@@ -154,9 +160,9 @@ public class PropTTRRouter extends ActiveRouter {
 				DTNHost otherHost = con.getOtherNode(getHost());
 				MessageRouter mRouter = otherHost.getRouter();
 
-				assert mRouter instanceof PropTTRRouter : "MaxProp only works "+ 
+				assert mRouter instanceof LoRaPropTTRRouter : "MaxProp only works "+ 
 				" with other routers of same type";
-				PropTTRRouter otherRouter = (PropTTRRouter)mRouter;
+				LoRaPropTTRRouter otherRouter = (LoRaPropTTRRouter)mRouter;
                                 
                                 if(otherRouter.esEstacionBase() && !esEstacionBase()) {
                                     setTTR(defaultTTR);
@@ -175,13 +181,17 @@ public class PropTTRRouter extends ActiveRouter {
 				probs.updateMeetingProbFor(otherHost.getAddress());
 				otherRouter.probs.updateMeetingProbFor(getHost().getAddress());
 				
+                                addProbSet(con, otherRouter);
+                                
 				/* exchange the transitive probabilities */
+                                /*
 				this.updateTransitiveProbs(otherRouter.allProbs);
 				otherRouter.updateTransitiveProbs(this.allProbs);
 				this.allProbs.put(otherHost.getAddress(),
 						otherRouter.probs.replicate());
 				otherRouter.allProbs.put(getHost().getAddress(),
 						this.probs.replicate());
+                                */
 			}
 		}
 		else {
@@ -315,6 +325,64 @@ public class PropTTRRouter extends ActiveRouter {
 	@Override
 	public void update() {
 		super.update();
+                
+                String key;
+                for(Connection con: this.getHost().getConnections()) {
+                    if(!con.isUp()) {
+                        continue;
+                    }
+                    key = ""+this.getHost().getAddress()+"_"+con.getOtherNode(this.getHost()).getAddress();
+                    if(set_con.containsKey(key)) {
+                        LinkedList<HashMap<Integer, MeetingProbabilitySet>> probs_general = set_con.get(key);
+                        if(probs_general.size() == 0) {
+                            set_con.remove(key);
+                        } else {
+                            ((LoRaPropTTRRouter)con.getOtherNode(this.getHost()).getRouter()).updateTransitiveProbs(probs_general.get(0));
+                            set_con.get(key).removeFirst();
+                            break;
+                        }
+                    }
+                    if(set_probs_propias.containsKey(key)) {
+                        LinkedList<MeetingProbabilitySet> probs_propias = set_probs_propias.get(key);
+                        if(probs_propias.size() == 0) {
+                            set_probs_propias.remove(key);
+                        } else {
+                            ((LoRaPropTTRRouter)con.getOtherNode(this.getHost()).getRouter()).allProbs.put(getHost().getAddress(), probs_propias.get(0).replicate());
+                            set_probs_propias.get(key).removeFirst();
+                            break;
+                        }
+                    }
+                    
+                    key = ""+con.getOtherNode(this.getHost()).getAddress()+"_"+this.getHost().getAddress();
+                    if(set_con.containsKey(key)) {
+                        LinkedList<HashMap<Integer, MeetingProbabilitySet>> probs_general = set_con.get(key);
+                        if(probs_general.size() == 0) {
+                            set_con.remove(key);
+                        } else {
+                            ((LoRaPropTTRRouter)this.getHost().getRouter()).updateTransitiveProbs(probs_general.get(0));
+                            set_con.get(key).removeFirst();
+                            break;
+                        }
+                    }
+                    if(set_probs_propias.containsKey(key)) {
+                        LinkedList<MeetingProbabilitySet> probs_propias = set_probs_propias.get(key);
+                        if(probs_propias.size() == 0) {
+                            set_probs_propias.remove(key);
+                        } else {
+                            ((LoRaPropTTRRouter)this.getHost().getRouter()).allProbs.put(getHost().getAddress(), probs_propias.get(0).replicate());
+                            set_probs_propias.get(key).removeFirst();
+                            break;
+                        }
+                    }
+                }
+                // HashMap<String, LinkedList<HashMap<Integer, MeetingProbabilitySet>>> set_con;
+                // HashMap<String, LinkedList<MeetingProbabilitySet>> set_probs_propias;
+                
+                // this.updateTransitiveProbs(otherRouter.allProbs);
+                // otherRouter.updateTransitiveProbs(this.allProbs);
+                // this.allProbs.put(otherHost.getAddress(), otherRouter.probs.replicate());
+                // otherRouter.allProbs.put(getHost().getAddress(), this.probs.replicate());
+                
                 double currentSimTime = internalClock.getTime();
                 missing_time += currentSimTime - lastSimTime;
                 double floor = Math.floor(missing_time);
@@ -388,7 +456,7 @@ public class PropTTRRouter extends ActiveRouter {
 		 * collect all the messages that could be sent */
 		for (Connection con : getConnections()) {
 			DTNHost other = con.getOtherNode(getHost());
-			PropTTRRouter othRouter = (PropTTRRouter)other.getRouter();
+			LoRaPropTTRRouter othRouter = (LoRaPropTTRRouter)other.getRouter();
                         
                         // No se envían mensajes a nodos con TTR mayor
                         if(!othRouter.esEstacionBase() && othRouter.getTTR() > getTTR()) {
@@ -641,7 +709,7 @@ public class PropTTRRouter extends ActiveRouter {
 	
 	@Override
 	public MessageRouter replicate() {
-		PropTTRRouter r = new PropTTRRouter(this);
+		LoRaPropTTRRouter r = new LoRaPropTTRRouter(this);
 		return r;
 	}
         
@@ -663,5 +731,113 @@ public class PropTTRRouter extends ActiveRouter {
         
         public boolean esEstacionBase() {
             return es_central;
+        }
+        
+        public class Pair<L,R> {
+
+            private final L left;
+            private final R right;
+
+            public Pair(L left, R right) {
+              assert left != null;
+              assert right != null;
+
+              this.left = left;
+              this.right = right;
+            }
+
+            public L getLeft() { return left; }
+            public R getRight() { return right; }
+
+            @Override
+            public int hashCode() { return left.hashCode() ^ right.hashCode(); }
+
+            @Override
+            public boolean equals(Object o) {
+              if (!(o instanceof Pair)) return false;
+              Pair pairo = (Pair) o;
+              return this.left.equals(pairo.getLeft()) &&
+                     this.right.equals(pairo.getRight());
+            }
+
+        }
+        
+        public void addProbSet(Connection con, LoRaPropTTRRouter otherRouter) {
+            //this.alpha
+            //this.probSetMaxSize
+            // HashMap<String, LinkedList<HashMap<Integer, MeetingProbabilitySet>>>
+            // Map<Integer, MeetingProbabilitySet> allProbs;
+            
+            //propias
+            Map<Integer, MeetingProbabilitySet> set = this.allProbs;
+            String key = ""+this.getHost().getAddress()+"_"+con.getOtherNode(this.getHost()).getAddress();
+            int pos_in_linkedlist = 0;
+            set_con.put(key, new LinkedList<HashMap<Integer, MeetingProbabilitySet>>());
+            set_con.get(key).add(new HashMap<>());
+            int contador = 0;
+            for(Integer id: set.keySet()) {
+                set_con.get(key).get(pos_in_linkedlist).put(id, new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                Map<Integer, Double> all_probs = set.get(id).getAllProbs();
+                for(Integer sub_id: all_probs.keySet()) {
+                    if(contador >= 31) {
+                        contador = 0;
+                        pos_in_linkedlist++;
+                        set_con.get(key).add(new HashMap<Integer, MeetingProbabilitySet>());
+                        set_con.get(key).get(pos_in_linkedlist).put(id, new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                    }
+                    set_con.get(key).get(pos_in_linkedlist).get(id).updateMeetingProbFor(sub_id, all_probs.get(sub_id));
+                    contador++;
+                }
+            }
+            contador = 0;
+            pos_in_linkedlist = 0;
+            set_probs_propias.put(key, new LinkedList<MeetingProbabilitySet>());
+            set_probs_propias.get(key).add(new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+            for(Integer id: this.probs.getAllProbs().keySet()) {
+                if(contador >= 31) {
+                    contador = 0;
+                    pos_in_linkedlist++;
+                    set_probs_propias.get(key).add(new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                }
+                set_probs_propias.get(key).get(pos_in_linkedlist).updateMeetingProbFor(id, this.probs.getAllProbs().get(id));
+                contador++;
+            }
+            
+            
+            // otro router
+            
+            Map<Integer, MeetingProbabilitySet> otro_set = otherRouter.allProbs;
+            key = ""+con.getOtherNode(this.getHost()).getAddress()+"_"+this.getHost().getAddress();
+            pos_in_linkedlist = 0;
+            set_con.put(key, new LinkedList<HashMap<Integer, MeetingProbabilitySet>>());
+            set_con.get(key).add(new HashMap<>());
+            contador = 0;
+            for(Integer id: otro_set.keySet()) {
+                set_con.get(key).get(pos_in_linkedlist).put(id, new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                Map<Integer, Double> all_probs = otro_set.get(id).getAllProbs();
+                for(Integer sub_id: all_probs.keySet()) {
+                    if(contador >= 31) {
+                        contador = 0;
+                        pos_in_linkedlist++;
+                        set_con.get(key).add(new HashMap<Integer, MeetingProbabilitySet>());
+                        set_con.get(key).get(pos_in_linkedlist).put(id, new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                    }
+                    set_con.get(key).get(pos_in_linkedlist).get(id).updateMeetingProbFor(sub_id, all_probs.get(sub_id));
+                    contador++;
+                }
+            }
+            contador = 0;
+            pos_in_linkedlist = 0;
+            set_probs_propias.put(key, new LinkedList<MeetingProbabilitySet>());
+            set_probs_propias.get(key).add(new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+            for(Integer id: otherRouter.probs.getAllProbs().keySet()) {
+                if(contador >= 31) {
+                    contador = 0;
+                    pos_in_linkedlist++;
+                    set_probs_propias.get(key).add(new MeetingProbabilitySet(this.probSetMaxSize, this.alpha));
+                }
+                set_probs_propias.get(key).get(pos_in_linkedlist).updateMeetingProbFor(id, otherRouter.probs.getAllProbs().get(id));
+                contador++;
+            }
         }
 }

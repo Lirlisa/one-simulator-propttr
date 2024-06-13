@@ -5,11 +5,11 @@ Scenario.endTime = 43200
 Scenario.nrofHostGroups = 6
 
 loraInterface.type = SimpleBroadcastInterface
-loraInterface.transmitSpeed = 3k
+loraInterface.transmitSpeed = 1700
 loraInterface.transmitRange = 1000
 
 
-Group.router = PropTTRRouter
+Group.router = LoRaPropTTRRouter
 Group.bufferSize = 5M
 Group.waitTime = 200,800
 Group.nrofInterfaces = 1
@@ -72,6 +72,8 @@ Group6.movementModel = ShortestPathMapAndTTRBasedMovement
 Group6.interface1 = loraInterface
 
 
+MovementModel.rngSeed = 2
+MapBasedMovement.rngSeed = 2
 MapBasedMovement.nrofMapFiles = 1
 MapBasedMovement.mapFile1 = data/Linares/roads_bigger.wkt
 MovementModel.worldSize = 100000,100000
@@ -81,7 +83,7 @@ PointsOfInterest.poiFile1 = data/Linares/poi.wkt
 
 
 Events.nrof = 1
-Events1.class = MessageEventGenerator
+Events1.class = MessageEventGeneratorWithCompression
 Events1.interval = 25,35
 Events1.size = 150,200
 Events1.hosts = 0,17

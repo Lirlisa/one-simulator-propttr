@@ -12,6 +12,7 @@ import movement.map.PointsOfInterest;
 import core.Settings;
 import core.Coord;
 import routing.PropTTRRouter;
+import routing.LoRaPropTTRRouter;
 
 /**
  * Map based movement model that uses Dijkstra's algorithm to find shortest
@@ -64,13 +65,18 @@ public class ShortestPathMapAndTTRBasedMovement extends MapBasedMovement impleme
                     totalDistance += lastCoord.distance(nodePath.get(i).getLocation());
                     lastCoord = nodePath.get(i).getLocation();
                 }
-                if(totalDistance/rapidez > ((PropTTRRouter)getHost().getRouter()).getTTR()) {
-                    to = to_base; // de vuelta a base station
-                    nodePath = pathFinder.getShortestPath(lastMapNode, to);
-                    System.out.println(to);
+                if(getHost().getRouter() instanceof PropTTRRouter) {
+                    if(totalDistance/rapidez > ((PropTTRRouter)getHost().getRouter()).getTTR()) {
+                        to = to_base; // de vuelta a base station
+                        nodePath = pathFinder.getShortestPath(lastMapNode, to);
+                    }
+                } else if(getHost().getRouter() instanceof LoRaPropTTRRouter) {
+                    if(totalDistance/rapidez > ((LoRaPropTTRRouter)getHost().getRouter()).getTTR()) {
+                        to = to_base; // de vuelta a base station
+                        nodePath = pathFinder.getShortestPath(lastMapNode, to);
+                    }
                 }
-                //System.out.println("Distancia total: " + totalDistance);
-                //System.out.println("Tiempo a gastar: " + totalDistance/rapidez);
+                
 		
 		// this assertion should never fire if the map is checked in read phase
 		assert nodePath.size() > 0 : "No path from " + lastMapNode + " to " +

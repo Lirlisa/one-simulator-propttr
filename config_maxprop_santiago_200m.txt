@@ -5,7 +5,7 @@ Scenario.endTime = 43200
 Scenario.nrofHostGroups = 12
 
 loraInterface.type = SimpleBroadcastInterface
-loraInterface.transmitSpeed = 3k
+loraInterface.transmitSpeed = 1700
 loraInterface.transmitRange = 200
 
 

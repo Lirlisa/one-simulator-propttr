@@ -1,15 +1,15 @@
-Scenario.name = linares_epidemic_500m_scenario
+Scenario.name = linares_propttr_500m_scenario
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 Scenario.endTime = 43200
 Scenario.nrofHostGroups = 6
 
 loraInterface.type = SimpleBroadcastInterface
-loraInterface.transmitSpeed = 3k
-loraInterface.transmitRange = 1000
+loraInterface.transmitSpeed = 1700
+loraInterface.transmitRange = 500
 
 
-Group.router = EpidemicRouter
+Group.router = LoRaPropTTRRouter
 Group.bufferSize = 5M
 Group.waitTime = 200,800
 Group.nrofInterfaces = 1
@@ -17,7 +17,7 @@ Group.interface1 = loraInterface
 Group.msgTtl = 21600
 Group.nrofHosts = 1
 Group.routeType = 2
-Group.pois = 1,0.2
+Group.pois = 1,1
 Group.okMaps = 1
 
 
@@ -52,7 +52,7 @@ Group4.groupID = p
 Group4.speed = 6, 22
 Group4.default_ttr = 7200
 Group4.nrofHosts = 5
-Group4.movementModel = ShortestPathMapBasedMovement
+Group4.movementModel = ShortestPathMapAndTTRBasedMovement
 Group4.interface1 = loraInterface
 
 #grupo5
@@ -60,7 +60,7 @@ Group5.groupID = a
 Group5.speed = 6, 22
 Group5.default_ttr = 7200
 Group5.nrofHosts = 5
-Group5.movementModel = ShortestPathMapBasedMovement
+Group5.movementModel = ShortestPathMapAndTTRBasedMovement
 Group5.interface1 = loraInterface
 
 #grupo6
@@ -68,7 +68,7 @@ Group6.groupID = b
 Group6.speed = 6, 22
 Group6.default_ttr = 7200
 Group6.nrofHosts = 5
-Group6.movementModel = ShortestPathMapBasedMovement
+Group6.movementModel = ShortestPathMapAndTTRBasedMovement
 Group6.interface1 = loraInterface
 
 
@@ -81,7 +81,7 @@ PointsOfInterest.poiFile1 = data/Linares/poi.wkt
 
 
 Events.nrof = 1
-Events1.class = MessageEventGenerator
+Events1.class = MessageEventGeneratorWithCompression
 Events1.interval = 25,35
 Events1.size = 150,200
 Events1.hosts = 0,17
