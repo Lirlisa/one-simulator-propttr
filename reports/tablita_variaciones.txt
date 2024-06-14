@@ -1,0 +1,34 @@
+\begin{table}[h]
+    \begin{adjustwidth}{-1in}{-1in}
+    \centering
+    \caption{\label{table:resultados_promedio} Variciones de las métricas al aumentar la cantidad de mensajes generados} Fuente: Elaboración Propia.
+    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{Mapa}    &
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead (\%)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos (\%)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia (\%)\end{tabular}}&
+    Tasa de entrega  (\%)\\ \hline
+    Linares & 1km       & lorapropttr  & 0.63           & 0.82            & -14.97             & 0.60 \\ \hline
+Linares & 500m       & lorapropttr  & 4.03           & 1.62            & 6.59             & 0.38 \\ \hline
+Linares & 1km       & maxprop  & -1.43           & 0.46            & 7.28             & 0.14 \\ \hline
+Linares & 500m       & maxprop  & -0.16           & -3.27            & 6.00             & 0.28 \\ \hline
+Linares & 1km       & propttr  & 0.66           & 0.70            & -14.95             & 0.60 \\ \hline
+Linares & 500m       & propttr  & -0.56           & 1.13            & -4.24             & -0.31 \\ \hline
+Santiago & 200m       & lorapropttr  & 2.77           & 1.68            & -1.18             & 0.67 \\ \hline
+Santiago & 500m       & lorapropttr  & -1.27           & -2.41            & -3.45             & 0.31 \\ \hline
+Santiago & 200m       & maxprop  & -1.51           & -1.20            & -5.22             & -0.59 \\ \hline
+Santiago & 500m       & maxprop  & 1.21           & -0.21            & -2.56             & 0.11 \\ \hline
+Santiago & 200m       & propttr  & 0.71           & 3.18            & -4.35             & 0.78 \\ \hline
+Santiago & 500m       & propttr  & 2.43           & 2.31            & 0.87             & 0.77 \\ \hline
+Valparaíso & 1km       & lorapropttr  & 1.57           & 1.94            & -1.32             & -0.14 \\ \hline
+Valparaíso & 500m       & lorapropttr  & 1.54           & -0.05            & 0.83             & -1.03 \\ \hline
+Valparaíso & 1km       & maxprop  & -0.74           & -3.17            & -3.21             & -0.72 \\ \hline
+Valparaíso & 500m       & maxprop  & -0.10           & -1.12            & -2.35             & -0.42 \\ \hline
+Valparaíso & 1km       & propttr  & -0.02           & 0.36            & -4.20             & 0.34 \\ \hline
+Valparaíso & 500m       & propttr  & 0.62           & 0.85            & 1.20             & 0.05 \\ \hline
+    \end{tabular}
+\end{adjustwidth}
+\end{table}

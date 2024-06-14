@@ -1,0 +1,17 @@
+\begin{table}[h]
+    \begin{adjustwidth}{-1in}{-1in}
+    \centering
+    \caption{\label{table:resultados_${mapa}_${masmsj}} Resultados de simulación en mapa de $mapa_bien_escrito ${mensaje_cant_msj}} Fuente: Elaboración Propia.
+    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{Mapa}    &
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
+    Tasa de entrega \\ \hline
+    $filas
+    \end{tabular}
+\end{adjustwidth}
+\end{table}
