@@ -126,6 +126,7 @@ for config in gen_configs():
         rango_nodo_destinatario=config["rango_nodo_destinatario"],
     )
 
+
 for escenario in dict_configs:
     with open(f"{path_base}{escenario}.txt", "w") as file:
         file.write(dict_configs[escenario])
