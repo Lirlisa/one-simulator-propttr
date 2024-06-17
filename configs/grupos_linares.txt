@@ -1,0 +1,23 @@
+#grupo 1
+Group1.groupID = bs1_
+Group1.es_central = true
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 6752,1260
+Group1.nrofHosts = 1
+Group1.interface1 = loraInterface
+
+#grupo 2
+Group2.groupID = bs2_
+Group2.es_central = true
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 3268, 2826
+Group2.nrofHosts = 1
+Group2.interface1 = loraInterface
+
+#grupo 3
+Group3.groupID = bs3_
+Group3.es_central = true
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 2101, 3499
+Group3.nrofHosts = 1
+Group3.interface1 = loraInterface

@@ -1,0 +1,50 @@
+Scenario.name = {nombre_escenario}
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = {num_host_groups}
+
+loraInterface.type = SimpleBroadcastInterface
+loraInterface.transmitSpeed = 1700
+loraInterface.transmitRange = {rango_transmision}
+
+
+Group.movementModel = ShortestPathMapAndTTRBasedMovement
+Group.router = {router}
+Group.bufferSize = 5k
+Group.waitTime = 200,800
+Group.nrofInterfaces = 1
+Group.interface1 = loraInterface
+Group.msgTtl = 21600
+Group.nrofHosts = 1
+Group.routeType = 2
+Group.pois = 1,1
+Group.okMaps = 1
+
+
+{config_grupos_nodos_estaticos}
+
+{config_grupos_nodos_moviles}
+
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = {path_mapa}
+MovementModel.worldSize = 100000,100000
+
+
+PointsOfInterest.poiFile1 = {path_pois}
+
+
+Events.nrof = 1
+Events1.class = MessageEventGeneratorWithCompression
+MovementModel.rngSeed = {rng}
+Events1.interval = {intervalo_mensajes}
+Events1.size = 150,200
+Events1.hosts = {rango_nodo_destinatario}
+Events1.prefix = M
+
+
+Report.nrofReports = 1
+Report.warmup = 0
+Report.reportDir = reports/
+Report.report1 = MessageStatsReport

@@ -13,6 +13,7 @@ import core.Settings;
 import core.Coord;
 import routing.PropTTRRouter;
 import routing.LoRaPropTTRRouter;
+import routing.MaxPropRouterWithTTR;
 
 /**
  * Map based movement model that uses Dijkstra's algorithm to find shortest
@@ -72,6 +73,11 @@ public class ShortestPathMapAndTTRBasedMovement extends MapBasedMovement impleme
                     }
                 } else if(getHost().getRouter() instanceof LoRaPropTTRRouter) {
                     if(totalDistance/rapidez > ((LoRaPropTTRRouter)getHost().getRouter()).getTTR()) {
+                        to = to_base; // de vuelta a base station
+                        nodePath = pathFinder.getShortestPath(lastMapNode, to);
+                    }
+                } else if (getHost().getRouter() instanceof MaxPropRouterWithTTR) {
+                    if(totalDistance/rapidez > ((MaxPropRouterWithTTR)getHost().getRouter()).getTTR()) {
                         to = to_base; // de vuelta a base station
                         nodePath = pathFinder.getShortestPath(lastMapNode, to);
                     }

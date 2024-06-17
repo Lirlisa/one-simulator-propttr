@@ -1,0 +1,7 @@
+#grupo{num_grupo}
+Group{num_grupo}.groupID = {id_grupo}
+Group{num_grupo}.speed = 6, 22
+Group{num_grupo}.default_ttr = 7200
+Group{num_grupo}.nrofHosts = {num_host}
+Group{num_grupo}.movementModel = ShortestPathMapAndTTRBasedMovement
+Group{num_grupo}.interface1 = loraInterface

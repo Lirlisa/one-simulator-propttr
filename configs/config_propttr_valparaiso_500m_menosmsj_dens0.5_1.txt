@@ -1,0 +1,111 @@
+Scenario.name = config_propttr_valparaiso_500m_menosmsj_dens0.5_1
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 9
+
+loraInterface.type = SimpleBroadcastInterface
+loraInterface.transmitSpeed = 1700
+loraInterface.transmitRange = 500
+
+
+Group.movementModel = ShortestPathMapAndTTRBasedMovement
+Group.router = PropTTRRouter
+Group.bufferSize = 5k
+Group.waitTime = 200,800
+Group.nrofInterfaces = 1
+Group.interface1 = loraInterface
+Group.msgTtl = 21600
+Group.nrofHosts = 1
+Group.routeType = 2
+Group.pois = 1,1
+Group.okMaps = 1
+
+
+#grupo 1
+Group1.groupID = bs1_
+Group1.es_central = true
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 5922, 1993
+Group1.nrofHosts = 1
+
+#grupo 2
+Group2.groupID = bs2_
+Group2.es_central = true
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 9295, 3450
+Group2.nrofHosts = 1
+
+#grupo 3
+Group3.groupID = bs3_
+Group3.es_central = true
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 8041, 4726
+Group3.nrofHosts = 1
+
+#grupo 4
+Group4.groupID = bs4_
+Group4.es_central = true
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 3768, 4274
+Group4.interface1 = loraInterface
+Group4.nrofHosts = 1
+
+#grupo 5
+Group5.groupID = bs5_
+Group5.es_central = true
+Group5.movementModel = StationaryMovement
+Group5.nodeLocation = 6917, 8096
+Group5.nrofHosts = 1
+
+#grupo 6
+Group6.groupID = bs6_
+Group6.es_central = true
+Group6.movementModel = StationaryMovement
+Group6.nodeLocation = 9939, 1172
+Group6.nrofHosts = 1
+
+#grupo7
+Group7.groupID = p
+Group7.speed = 6, 22
+Group7.default_ttr = 7200
+Group7.nrofHosts = 22
+Group7.movementModel = ShortestPathMapAndTTRBasedMovement
+Group7.interface1 = loraInterface
+#grupo8
+Group8.groupID = a
+Group8.speed = 6, 22
+Group8.default_ttr = 7200
+Group8.nrofHosts = 22
+Group8.movementModel = ShortestPathMapAndTTRBasedMovement
+Group8.interface1 = loraInterface
+#grupo9
+Group9.groupID = b
+Group9.speed = 6, 22
+Group9.default_ttr = 7200
+Group9.nrofHosts = 21
+Group9.movementModel = ShortestPathMapAndTTRBasedMovement
+Group9.interface1 = loraInterface
+
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/Valparaiso/roads_bigger.wkt
+MovementModel.worldSize = 100000,100000
+
+
+PointsOfInterest.poiFile1 = data/Valparaiso/poi2.wkt
+
+
+Events.nrof = 1
+Events1.class = MessageEventGeneratorWithCompression
+MovementModel.rngSeed = 1
+Events1.interval = 600
+Events1.size = 150,200
+Events1.hosts = 0, 70
+Events1.prefix = M
+
+
+Report.nrofReports = 1
+Report.warmup = 0
+Report.reportDir = reports/
+Report.report1 = MessageStatsReport
