@@ -19,7 +19,6 @@ def run_one(path: str):
             capture_output=True,
             check=True,
         )
-        print("flag2")
         return f"Logrado: {path}"
     except subprocess.CalledProcessError as e:
         with open("errors/" + path.split("/")[1], "a") as file:
@@ -41,7 +40,10 @@ def run_one(path: str):
 
 if __name__ == "__main__":
     print("Empezando")
+    paths = [
+        "configs/" + path.split("/")[1] for path in glob.glob("errors/config_*.txt")
+    ]
     with Pool() as pool:
-        res = pool.imap_unordered(run_one, glob.glob("configs/config_*.txt"))
+        res = pool.imap_unordered(run_one, paths)
         for r in res:
             print(r)

@@ -1,0 +1,20 @@
+Message stats for scenario config_propttr_santiago_200m_menosmsj_dens0.2_2
+sim_time: 43200.1000
+created: 72
+started: 212
+relayed: 212
+aborted: 0
+dropped: 0
+removed: 190
+delivered: 39
+delivery_prob: 0.5417
+response_prob: 0.0000
+overhead_ratio: 4.4359
+latency_avg: 10373.5667
+latency_med: 8239.6000
+hopcount_avg: 1.8974
+hopcount_med: 2
+buffertime_avg: 8487.3321
+buffertime_med: 6201.6000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,20 @@
+Message stats for scenario config_lorapropttr_valparaiso_1km_menosmsj_dens0.2_3
+sim_time: 43200.1000
+created: 72
+started: 2461
+relayed: 2461
+aborted: 0
+dropped: 0
+removed: 2444
+delivered: 70
+delivery_prob: 0.9722
+response_prob: 0.0000
+overhead_ratio: 34.1571
+latency_avg: 599.0429
+latency_med: 461.6000
+hopcount_avg: 3.1571
+hopcount_med: 3
+buffertime_avg: 288.1781
+buffertime_med: 115.6000
+rtt_avg: NaN
+rtt_med: NaN

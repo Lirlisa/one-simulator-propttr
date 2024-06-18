@@ -1,0 +1,20 @@
+Message stats for scenario config_lorapropttr_santiago_500m_masmsj_dens1_2
+sim_time: 43200.1000
+created: 144
+started: 1591
+relayed: 1591
+aborted: 0
+dropped: 0
+removed: 1582
+delivered: 140
+delivery_prob: 0.9722
+response_prob: 0.0000
+overhead_ratio: 10.3643
+latency_avg: 1767.1471
+latency_med: 748.9000
+hopcount_avg: 2.3429
+hopcount_med: 2
+buffertime_avg: 825.9169
+buffertime_med: 367.0000
+rtt_avg: NaN
+rtt_med: NaN

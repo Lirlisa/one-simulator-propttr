@@ -1,0 +1,20 @@
+Message stats for scenario config_lorapropttr_linares_1km_masmsj_dens1_2
+sim_time: 43200.1000
+created: 144
+started: 11125
+relayed: 11123
+aborted: 1
+dropped: 0
+removed: 11121
+delivered: 143
+delivery_prob: 0.9931
+response_prob: 0.0000
+overhead_ratio: 76.7832
+latency_avg: 73.1154
+latency_med: 10.1000
+hopcount_avg: 3.6713
+hopcount_med: 3
+buffertime_avg: 25.0382
+buffertime_med: 2.7000
+rtt_avg: NaN
+rtt_med: NaN
