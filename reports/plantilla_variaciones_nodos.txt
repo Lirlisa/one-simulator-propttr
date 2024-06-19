@@ -1,0 +1,17 @@
+\begin{table}[H]
+    \begin{adjustwidth}{-1in}{-1in}
+    \centering
+    \caption{\label{table:resultados_${tag}} Variciones de las métricas al aumentar la densidad de nodos ${texto_variacion_densidad}} Fuente: Elaboración Propia.
+    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{Mapa}    &
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead (\%)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos (\%)\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia (\%)\end{tabular}}&
+    Tasa de entrega  (\%)\\ \hline
+    $filas
+    \end{tabular}
+\end{adjustwidth}
+\end{table}

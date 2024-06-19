@@ -4,8 +4,9 @@ import glob
 filas = []
 
 
-for filename in glob.glob("./*.txt"):
-    _, protocolo, mapa, rango, masmsj, rng, _ = filename.split("_")
+for filename in glob.glob("./config_*.txt"):
+    _, protocolo, mapa, rango, masmsj, dens, rng, _ = filename.split("_")
+    dens = dens[4:]
     with open(filename, "r") as file:
         lineas = file.readlines()
         filas.append(
@@ -14,6 +15,7 @@ for filename in glob.glob("./*.txt"):
                 mapa,
                 rango,
                 masmsj == "masmsj",
+                dens,
                 rng,
                 float(lineas[9].split(":")[1].strip()),
                 float(lineas[11].split(":")[1].strip()),
@@ -29,6 +31,7 @@ df = pd.DataFrame(
         "mapa",
         "rango",
         "masmsj",
+        "dens",
         "rng",
         "delivery_prob",
         "overhead_ratio",

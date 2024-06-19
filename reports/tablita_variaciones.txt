@@ -1,34 +1,71 @@
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
     \caption{\label{table:resultados_promedio} Variciones de las métricas al aumentar la cantidad de mensajes generados} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^{2})\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead (\%)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos (\%)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia (\%)\end{tabular}}&
     Tasa de entrega  (\%)\\ \hline
-    Linares & 1km       & lorapropttr  & 0.63           & 0.82            & -14.97             & 0.60 \\ \hline
-Linares & 500m       & lorapropttr  & 4.03           & 1.62            & 6.59             & 0.38 \\ \hline
-Linares & 1km       & maxprop  & -1.43           & 0.46            & 7.28             & 0.14 \\ \hline
-Linares & 500m       & maxprop  & -0.16           & -3.27            & 6.00             & 0.28 \\ \hline
-Linares & 1km       & propttr  & 0.66           & 0.70            & -14.95             & 0.60 \\ \hline
-Linares & 500m       & propttr  & -0.56           & 1.13            & -4.24             & -0.31 \\ \hline
-Santiago & 200m       & lorapropttr  & 2.77           & 1.68            & -1.18             & 0.67 \\ \hline
-Santiago & 500m       & lorapropttr  & -1.27           & -2.41            & -3.45             & 0.31 \\ \hline
-Santiago & 200m       & maxprop  & -1.51           & -1.20            & -5.22             & -0.59 \\ \hline
-Santiago & 500m       & maxprop  & 1.21           & -0.21            & -2.56             & 0.11 \\ \hline
-Santiago & 200m       & propttr  & 0.71           & 3.18            & -4.35             & 0.78 \\ \hline
-Santiago & 500m       & propttr  & 2.43           & 2.31            & 0.87             & 0.77 \\ \hline
-Valparaíso & 1km       & lorapropttr  & 1.57           & 1.94            & -1.32             & -0.14 \\ \hline
-Valparaíso & 500m       & lorapropttr  & 1.54           & -0.05            & 0.83             & -1.03 \\ \hline
-Valparaíso & 1km       & maxprop  & -0.74           & -3.17            & -3.21             & -0.72 \\ \hline
-Valparaíso & 500m       & maxprop  & -0.10           & -1.12            & -2.35             & -0.42 \\ \hline
-Valparaíso & 1km       & propttr  & -0.02           & 0.36            & -4.20             & 0.34 \\ \hline
-Valparaíso & 500m       & propttr  & 0.62           & 0.85            & 1.20             & 0.05 \\ \hline
+    Linares & 1km       & lorapropttr    & 0.2& \cellcolor[HTML]{FD6864}-3.39           & \cellcolor[HTML]{FD6864}-1.39            & \cellcolor[HTML]{67FD9A}2.79             & \cellcolor[HTML]{67FD9A}2.27 \\ \hline
+Linares & 1km       & lorapropttr    & 0.5& \cellcolor[HTML]{FD6864}-0.97           & \cellcolor[HTML]{67FD9A}7.37            & \cellcolor[HTML]{FD6864}-27.77             & \cellcolor[HTML]{FD6864}-0.23 \\ \hline
+Linares & 1km       & lorapropttr    & 1.0& \cellcolor[HTML]{67FD9A}4.03           & \cellcolor[HTML]{67FD9A}0.83            & \cellcolor[HTML]{67FD9A}39.14             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Linares & 500m       & lorapropttr    & 0.2& \cellcolor[HTML]{67FD9A}3.69           & \cellcolor[HTML]{67FD9A}6.81            & \cellcolor[HTML]{FD6864}-13.20             & \cellcolor[HTML]{67FD9A}2.04 \\ \hline
+Linares & 500m       & lorapropttr    & 0.5& \cellcolor[HTML]{FD6864}-10.39           & \cellcolor[HTML]{FD6864}-4.63            & \cellcolor[HTML]{FD6864}-5.90             & \cellcolor[HTML]{FD6864}-1.16 \\ \hline
+Linares & 500m       & lorapropttr    & 1.0& \cellcolor[HTML]{FD6864}-3.67           & \cellcolor[HTML]{FD6864}-0.82            & \cellcolor[HTML]{67FD9A}9.59             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Linares & 1km       & maxprop    & 0.2& \cellcolor[HTML]{FD6864}-5.92           & \cellcolor[HTML]{FD6864}-5.69            & \cellcolor[HTML]{67FD9A}6.02             & \cellcolor[HTML]{67FD9A}0.70 \\ \hline
+Linares & 1km       & maxprop    & 0.5& \cellcolor[HTML]{67FD9A}7.24           & \cellcolor[HTML]{67FD9A}11.69            & \cellcolor[HTML]{FD6864}-21.77             & \cellcolor[HTML]{67FD9A}0.94 \\ \hline
+Linares & 1km       & maxprop    & 1.0& \cellcolor[HTML]{67FD9A}6.57           & \cellcolor[HTML]{67FD9A}5.90            & \cellcolor[HTML]{67FD9A}3.32             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Linares & 500m       & maxprop    & 0.2& \cellcolor[HTML]{67FD9A}0.38           & \cellcolor[HTML]{FD6864}-0.70            & \cellcolor[HTML]{FD6864}-5.53             & \cellcolor[HTML]{67FD9A}0.00 \\ \hline
+Linares & 500m       & maxprop    & 0.5& \cellcolor[HTML]{FD6864}-6.23           & \cellcolor[HTML]{67FD9A}2.83            & \cellcolor[HTML]{67FD9A}0.96             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Linares & 500m       & maxprop    & 1.0& \cellcolor[HTML]{67FD9A}0.29           & \cellcolor[HTML]{67FD9A}4.05            & \cellcolor[HTML]{67FD9A}12.47             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Linares & 1km       & propttr    & 0.2& \cellcolor[HTML]{FD6864}-3.39           & \cellcolor[HTML]{FD6864}-1.39            & \cellcolor[HTML]{67FD9A}2.79             & \cellcolor[HTML]{67FD9A}2.27 \\ \hline
+Linares & 1km       & propttr    & 0.5& \cellcolor[HTML]{FD6864}-1.00           & \cellcolor[HTML]{67FD9A}7.37            & \cellcolor[HTML]{FD6864}-27.77             & \cellcolor[HTML]{FD6864}-0.23 \\ \hline
+Linares & 1km       & propttr    & 1.0& \cellcolor[HTML]{67FD9A}4.00           & \cellcolor[HTML]{67FD9A}0.71            & \cellcolor[HTML]{67FD9A}39.14             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Linares & 500m       & propttr    & 0.2& \cellcolor[HTML]{67FD9A}3.69           & \cellcolor[HTML]{67FD9A}6.81            & \cellcolor[HTML]{FD6864}-13.20             & \cellcolor[HTML]{67FD9A}2.04 \\ \hline
+Linares & 500m       & propttr    & 0.5& \cellcolor[HTML]{FD6864}-10.41           & \cellcolor[HTML]{FD6864}-4.63            & \cellcolor[HTML]{FD6864}-5.90             & \cellcolor[HTML]{FD6864}-1.16 \\ \hline
+Linares & 500m       & propttr    & 1.0& \cellcolor[HTML]{FD6864}-3.77           & \cellcolor[HTML]{FD6864}-0.94            & \cellcolor[HTML]{67FD9A}9.59             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Santiago & 200m       & lorapropttr    & 0.2& \cellcolor[HTML]{67FD9A}3.48           & \cellcolor[HTML]{FD6864}-4.74            & \cellcolor[HTML]{FD6864}-6.13             & \cellcolor[HTML]{FD6864}-3.13 \\ \hline
+Santiago & 200m       & lorapropttr    & 0.5& \cellcolor[HTML]{FD6864}-3.70           & \cellcolor[HTML]{67FD9A}4.40            & \cellcolor[HTML]{FD6864}-4.49             & \cellcolor[HTML]{67FD9A}5.26 \\ \hline
+Santiago & 200m       & lorapropttr    & 1.0& \cellcolor[HTML]{67FD9A}9.53           & \cellcolor[HTML]{67FD9A}9.16            & \cellcolor[HTML]{67FD9A}31.07             & \cellcolor[HTML]{67FD9A}0.00 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.2& \cellcolor[HTML]{67FD9A}1.80           & \cellcolor[HTML]{67FD9A}6.87            & \cellcolor[HTML]{67FD9A}8.84             & \cellcolor[HTML]{FD6864}-3.42 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.5& \cellcolor[HTML]{67FD9A}1.74           & \cellcolor[HTML]{FD6864}-1.94            & \cellcolor[HTML]{FD6864}-0.14             & \cellcolor[HTML]{67FD9A}1.03 \\ \hline
+Santiago & 500m       & lorapropttr    & 1.0& \cellcolor[HTML]{FD6864}-3.46           & \cellcolor[HTML]{FD6864}-0.14            & \cellcolor[HTML]{67FD9A}17.75             & \cellcolor[HTML]{FD6864}-0.95 \\ \hline
+Santiago & 200m       & maxprop    & 0.2& \cellcolor[HTML]{67FD9A}1.67           & \cellcolor[HTML]{67FD9A}2.55            & \cellcolor[HTML]{67FD9A}1.25             & \cellcolor[HTML]{67FD9A}2.30 \\ \hline
+Santiago & 200m       & maxprop    & 0.5& \cellcolor[HTML]{FD6864}-0.19           & \cellcolor[HTML]{FD6864}-1.41            & \cellcolor[HTML]{67FD9A}5.38             & \cellcolor[HTML]{67FD9A}1.00 \\ \hline
+Santiago & 200m       & maxprop    & 1.0& \cellcolor[HTML]{67FD9A}7.24           & \cellcolor[HTML]{67FD9A}6.60            & \cellcolor[HTML]{FD6864}-2.09             & \cellcolor[HTML]{67FD9A}0.00 \\ \hline
+Santiago & 500m       & maxprop    & 0.2& \cellcolor[HTML]{67FD9A}1.69           & \cellcolor[HTML]{67FD9A}6.00            & \cellcolor[HTML]{67FD9A}2.26             & \cellcolor[HTML]{FD6864}-0.26 \\ \hline
+Santiago & 500m       & maxprop    & 0.5& \cellcolor[HTML]{67FD9A}1.15           & \cellcolor[HTML]{FD6864}-0.17            & \cellcolor[HTML]{FD6864}-11.29             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Santiago & 500m       & maxprop    & 1.0& \cellcolor[HTML]{67FD9A}0.59           & \cellcolor[HTML]{67FD9A}1.55            & \cellcolor[HTML]{67FD9A}0.70             & \cellcolor[HTML]{FD6864}-0.47 \\ \hline
+Santiago & 200m       & propttr    & 0.2& \cellcolor[HTML]{67FD9A}3.48           & \cellcolor[HTML]{FD6864}-4.74            & \cellcolor[HTML]{FD6864}-6.13             & \cellcolor[HTML]{FD6864}-3.13 \\ \hline
+Santiago & 200m       & propttr    & 0.5& \cellcolor[HTML]{FD6864}-3.74           & \cellcolor[HTML]{67FD9A}4.83            & \cellcolor[HTML]{FD6864}-4.49             & \cellcolor[HTML]{67FD9A}5.26 \\ \hline
+Santiago & 200m       & propttr    & 1.0& \cellcolor[HTML]{67FD9A}9.66           & \cellcolor[HTML]{67FD9A}10.18            & \cellcolor[HTML]{67FD9A}31.14             & \cellcolor[HTML]{67FD9A}0.00 \\ \hline
+Santiago & 500m       & propttr    & 0.2& \cellcolor[HTML]{67FD9A}1.80           & \cellcolor[HTML]{67FD9A}6.87            & \cellcolor[HTML]{67FD9A}8.84             & \cellcolor[HTML]{FD6864}-3.42 \\ \hline
+Santiago & 500m       & propttr    & 0.5& \cellcolor[HTML]{67FD9A}1.74           & \cellcolor[HTML]{FD6864}-1.94            & \cellcolor[HTML]{FD6864}-0.14             & \cellcolor[HTML]{67FD9A}1.03 \\ \hline
+Santiago & 500m       & propttr    & 1.0& \cellcolor[HTML]{FD6864}-3.46           & \cellcolor[HTML]{FD6864}-0.14            & \cellcolor[HTML]{67FD9A}17.75             & \cellcolor[HTML]{FD6864}-0.95 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 0.2& \cellcolor[HTML]{FD6864}-5.20           & \cellcolor[HTML]{FD6864}-1.35            & \cellcolor[HTML]{FD6864}-2.14             & \cellcolor[HTML]{67FD9A}1.43 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 0.5& \cellcolor[HTML]{FD6864}-4.66           & \cellcolor[HTML]{FD6864}-3.06            & \cellcolor[HTML]{FD6864}-10.05             & \cellcolor[HTML]{67FD9A}0.95 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 1.0& \cellcolor[HTML]{FD6864}-3.15           & \cellcolor[HTML]{67FD9A}6.96            & \cellcolor[HTML]{FD6864}-6.40             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.2& \cellcolor[HTML]{FD6864}-3.98           & \cellcolor[HTML]{FD6864}-3.86            & \cellcolor[HTML]{FD6864}-5.17             & \cellcolor[HTML]{67FD9A}0.72 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.5& \cellcolor[HTML]{FD6864}-5.87           & \cellcolor[HTML]{FD6864}-9.11            & \cellcolor[HTML]{FD6864}-5.00             & \cellcolor[HTML]{FD6864}-0.23 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 1.0& \cellcolor[HTML]{67FD9A}7.31           & \cellcolor[HTML]{FD6864}-2.87            & \cellcolor[HTML]{FD6864}-2.20             & \cellcolor[HTML]{67FD9A}0.48 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.2& \cellcolor[HTML]{FD6864}-3.76           & \cellcolor[HTML]{67FD9A}1.94            & \cellcolor[HTML]{FD6864}-8.25             & \cellcolor[HTML]{67FD9A}1.43 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.5& \cellcolor[HTML]{67FD9A}2.48           & \cellcolor[HTML]{FD6864}-0.43            & \cellcolor[HTML]{FD6864}-11.01             & \cellcolor[HTML]{67FD9A}1.19 \\ \hline
+Valparaíso & 1km       & maxprop    & 1.0& \cellcolor[HTML]{67FD9A}2.02           & \cellcolor[HTML]{67FD9A}1.53            & \cellcolor[HTML]{67FD9A}13.14             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.2& \cellcolor[HTML]{FD6864}-7.89           & \cellcolor[HTML]{FD6864}-1.37            & \cellcolor[HTML]{FD6864}-10.91             & \cellcolor[HTML]{67FD9A}2.16 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.5& \cellcolor[HTML]{FD6864}-2.08           & \cellcolor[HTML]{67FD9A}1.80            & \cellcolor[HTML]{67FD9A}2.64             & \cellcolor[HTML]{67FD9A}0.24 \\ \hline
+Valparaíso & 500m       & maxprop    & 1.0& \cellcolor[HTML]{FD6864}-3.37           & \cellcolor[HTML]{67FD9A}3.57            & \cellcolor[HTML]{FD6864}-10.30             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Valparaíso & 1km       & propttr    & 0.2& \cellcolor[HTML]{FD6864}-5.23           & \cellcolor[HTML]{FD6864}-1.49            & \cellcolor[HTML]{FD6864}-2.14             & \cellcolor[HTML]{67FD9A}1.43 \\ \hline
+Valparaíso & 1km       & propttr    & 0.5& \cellcolor[HTML]{FD6864}-4.63           & \cellcolor[HTML]{FD6864}-3.23            & \cellcolor[HTML]{FD6864}-10.05             & \cellcolor[HTML]{67FD9A}0.95 \\ \hline
+Valparaíso & 1km       & propttr    & 1.0& \cellcolor[HTML]{FD6864}-3.44           & \cellcolor[HTML]{67FD9A}5.98            & \cellcolor[HTML]{FD6864}-6.24             & \cellcolor[HTML]{67FD9A}0.71 \\ \hline
+Valparaíso & 500m       & propttr    & 0.2& \cellcolor[HTML]{FD6864}-3.89           & \cellcolor[HTML]{FD6864}-3.52            & \cellcolor[HTML]{FD6864}-5.18             & \cellcolor[HTML]{67FD9A}0.72 \\ \hline
+Valparaíso & 500m       & propttr    & 0.5& \cellcolor[HTML]{FD6864}-5.91           & \cellcolor[HTML]{FD6864}-9.06            & \cellcolor[HTML]{FD6864}-5.01             & \cellcolor[HTML]{FD6864}-0.23 \\ \hline
+Valparaíso & 500m       & propttr    & 1.0& \cellcolor[HTML]{67FD9A}7.34           & \cellcolor[HTML]{FD6864}-4.22            & \cellcolor[HTML]{FD6864}-2.18             & \cellcolor[HTML]{67FD9A}0.48 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}

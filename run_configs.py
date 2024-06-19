@@ -8,7 +8,7 @@ def run_one(path: str):
         subprocess.run(
             [
                 "java",
-                "-Xmx512M",
+                "-Xmx1G",
                 "-cp",
                 "target:lib/ECLA.jar:lib/DTNConsoleConnection.jar",
                 "core.DTNSim",
@@ -43,6 +43,7 @@ if __name__ == "__main__":
     paths = [
         "configs/" + path.split("/")[1] for path in glob.glob("errors/config_*.txt")
     ]
+    print(paths)
     with Pool() as pool:
         res = pool.imap_unordered(run_one, paths)
         for r in res:

@@ -1,137 +1,215 @@
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
     \caption{\label{table:resultados_linares_masmsj} Resultados de simulación en mapa de Linares con alta tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Linares & 1km       & lorapropttr  & 10.37\textpm 0.21           & 2.21\textpm 0.01            & 329.47\textpm 35.49             & 0.9714\textpm 0.0035 \\ \hline
-Linares & 500m       & lorapropttr  & 9.12\textpm 0.15           & 2.08\textpm 0.01            & 552.60\textpm 8.58             & 0.9626\textpm 0.0033 \\ \hline
-Linares & 1km       & maxprop  & 28.87\textpm 0.13           & 3.38\textpm 0.04            & 95.85\textpm 3.89             & 0.9985\textpm 0.0006 \\ \hline
-Linares & 500m       & maxprop  & 15.35\textpm 0.02           & 3.03\textpm 0.01            & 284.41\textpm 1.56             & 0.9947\textpm 0.0015 \\ \hline
-Linares & 1km       & propttr  & 10.38\textpm 0.21           & 2.21\textpm 0.01            & 329.51\textpm 35.47             & 0.9714\textpm 0.0035 \\ \hline
-Linares & 500m       & propttr  & 8.93\textpm 0.20           & 2.05\textpm 0.03            & 566.17\textpm 19.03             & 0.9556\textpm 0.0036 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Linares & 1km       & lorapropttr    & 0.2& 6.41\textpm 0.30           & 1.98\textpm 0.04            & 442.57\textpm 38.75             & 0.9375\textpm 0.0056 \\ \hline
+Linares & 1km       & lorapropttr    & 0.5& 29.51\textpm 3.16           & 3.04\textpm 0.05            & 146.74\textpm 14.57             & 0.9838\textpm 0.0087 \\ \hline
+Linares & 1km       & lorapropttr    & 1.0& 79.65\textpm 2.28           & 3.82\textpm 0.23            & 79.10\textpm 4.67             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 500m       & lorapropttr    & 0.2& 5.22\textpm 0.15           & 1.81\textpm 0.05            & 592.26\textpm 52.76             & 0.9259\textpm 0.0033 \\ \hline
+Linares & 500m       & lorapropttr    & 0.5& 24.73\textpm 0.82           & 2.67\textpm 0.06            & 381.91\textpm 33.08             & 0.9792\textpm 0.0000 \\ \hline
+Linares & 500m       & lorapropttr    & 1.0& 75.34\textpm 6.26           & 3.85\textpm 0.02            & 245.70\textpm 27.42             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 1km       & maxprop    & 0.2& 15.03\textpm 0.91           & 3.08\textpm 0.06            & 160.15\textpm 13.28             & 0.9977\textpm 0.0033 \\ \hline
+Linares & 1km       & maxprop    & 0.5& 150.99\textpm 6.63           & 4.07\textpm 0.07            & 34.99\textpm 2.28             & 0.9954\textpm 0.0033 \\ \hline
+Linares & 1km       & maxprop    & 1.0& 792.34\textpm 20.88           & 4.18\textpm 0.01            & 9.33\textpm 1.21             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 500m       & maxprop    & 0.2& 9.29\textpm 0.12           & 2.68\textpm 0.09            & 337.24\textpm 26.72             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 500m       & maxprop    & 0.5& 51.36\textpm 0.69           & 4.52\textpm 0.19            & 181.99\textpm 8.77             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 500m       & maxprop    & 1.0& 301.01\textpm 8.43           & 6.89\textpm 0.25            & 80.13\textpm 7.04             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 1km       & propttr    & 0.2& 6.41\textpm 0.30           & 1.98\textpm 0.04            & 442.57\textpm 38.75             & 0.9375\textpm 0.0056 \\ \hline
+Linares & 1km       & propttr    & 0.5& 29.50\textpm 3.16           & 3.04\textpm 0.05            & 146.74\textpm 14.57             & 0.9838\textpm 0.0087 \\ \hline
+Linares & 1km       & propttr    & 1.0& 79.63\textpm 2.26           & 3.82\textpm 0.23            & 79.10\textpm 4.67             & 0.9931\textpm 0.0000 \\ \hline
+Linares & 500m       & propttr    & 0.2& 5.22\textpm 0.15           & 1.81\textpm 0.05            & 592.26\textpm 52.76             & 0.9259\textpm 0.0033 \\ \hline
+Linares & 500m       & propttr    & 0.5& 24.73\textpm 0.82           & 2.67\textpm 0.06            & 381.91\textpm 33.07             & 0.9792\textpm 0.0000 \\ \hline
+Linares & 500m       & propttr    & 1.0& 75.33\textpm 6.24           & 3.85\textpm 0.02            & 245.70\textpm 27.42             & 0.9931\textpm 0.0000 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
     \caption{\label{table:resultados_linares_menosmsj} Resultados de simulación en mapa de Linares con baja tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Linares & 1km       & lorapropttr  & 10.31\textpm 0.33           & 2.19\textpm 0.04            & 387.49\textpm 101.11             & 0.9656\textpm 0.0060 \\ \hline
-Linares & 500m       & lorapropttr  & 8.77\textpm 0.18           & 2.04\textpm 0.03            & 518.45\textpm 9.49             & 0.9590\textpm 0.0024 \\ \hline
-Linares & 1km       & maxprop  & 29.29\textpm 0.93           & 3.36\textpm 0.02            & 89.34\textpm 5.98             & 0.9970\textpm 0.0008 \\ \hline
-Linares & 500m       & maxprop  & 15.37\textpm 0.18           & 3.14\textpm 0.07            & 268.32\textpm 6.06             & 0.9920\textpm 0.0018 \\ \hline
-Linares & 1km       & propttr  & 10.31\textpm 0.33           & 2.20\textpm 0.04            & 387.43\textpm 101.11             & 0.9656\textpm 0.0060 \\ \hline
-Linares & 500m       & propttr  & 8.98\textpm 0.16           & 2.03\textpm 0.01            & 591.23\textpm 9.11             & 0.9585\textpm 0.0034 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Linares & 1km       & lorapropttr    & 0.2& 6.64\textpm 0.83           & 2.01\textpm 0.05            & 430.57\textpm 69.28             & 0.9167\textpm 0.0113 \\ \hline
+Linares & 1km       & lorapropttr    & 0.5& 29.80\textpm 1.99           & 2.83\textpm 0.13            & 203.16\textpm 65.73             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 1km       & lorapropttr    & 1.0& 76.56\textpm 11.37           & 3.79\textpm 0.26            & 56.85\textpm 13.00             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & lorapropttr    & 0.2& 5.03\textpm 0.26           & 1.70\textpm 0.01            & 682.29\textpm 99.63             & 0.9074\textpm 0.0066 \\ \hline
+Linares & 500m       & lorapropttr    & 0.5& 27.60\textpm 1.10           & 2.80\textpm 0.10            & 405.86\textpm 34.46             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & lorapropttr    & 1.0& 78.22\textpm 2.98           & 3.88\textpm 0.16            & 224.21\textpm 14.07             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 1km       & maxprop    & 0.2& 15.97\textpm 2.15           & 3.27\textpm 0.12            & 151.05\textpm 7.51             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 1km       & maxprop    & 0.5& 140.79\textpm 4.53           & 3.65\textpm 0.13            & 44.72\textpm 18.13             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 1km       & maxprop    & 1.0& 743.52\textpm 16.12           & 3.95\textpm 0.13            & 9.03\textpm 4.09             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & maxprop    & 0.2& 9.25\textpm 0.67           & 2.70\textpm 0.10            & 357.00\textpm 21.58             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 500m       & maxprop    & 0.5& 54.77\textpm 3.81           & 4.40\textpm 0.44            & 180.26\textpm 18.04             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & maxprop    & 1.0& 300.14\textpm 1.82           & 6.62\textpm 0.10            & 71.25\textpm 15.52             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 1km       & propttr    & 0.2& 6.64\textpm 0.83           & 2.01\textpm 0.05            & 430.57\textpm 69.28             & 0.9167\textpm 0.0113 \\ \hline
+Linares & 1km       & propttr    & 0.5& 29.80\textpm 1.99           & 2.83\textpm 0.13            & 203.16\textpm 65.73             & 0.9861\textpm 0.0000 \\ \hline
+Linares & 1km       & propttr    & 1.0& 76.56\textpm 11.37           & 3.79\textpm 0.26            & 56.85\textpm 13.00             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & propttr    & 0.2& 5.03\textpm 0.26           & 1.70\textpm 0.01            & 682.29\textpm 99.63             & 0.9074\textpm 0.0066 \\ \hline
+Linares & 500m       & propttr    & 0.5& 27.60\textpm 1.11           & 2.80\textpm 0.10            & 405.86\textpm 34.46             & 0.9907\textpm 0.0066 \\ \hline
+Linares & 500m       & propttr    & 1.0& 78.28\textpm 3.07           & 3.88\textpm 0.16            & 224.21\textpm 14.07             & 0.9861\textpm 0.0000 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
     \caption{\label{table:resultados_santiago_masmsj} Resultados de simulación en mapa de Santiago con alta tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Santiago & 200m       & lorapropttr  & 12.27\textpm 0.13           & 2.36\textpm 0.02            & 2144.11\textpm 42.56             & 0.9533\textpm 0.0012 \\ \hline
-Santiago & 500m       & lorapropttr  & 14.48\textpm 0.10           & 2.58\textpm 0.04            & 916.95\textpm 48.17             & 0.9755\textpm 0.0032 \\ \hline
-Santiago & 200m       & maxprop  & 15.66\textpm 0.14           & 3.06\textpm 0.05            & 1159.74\textpm 77.86             & 0.9706\textpm 0.0067 \\ \hline
-Santiago & 500m       & maxprop  & 29.09\textpm 0.69           & 3.97\textpm 0.05            & 306.33\textpm 9.53             & 0.9935\textpm 0.0022 \\ \hline
-Santiago & 200m       & propttr  & 12.05\textpm 0.21           & 2.35\textpm 0.02            & 2050.20\textpm 89.01             & 0.9491\textpm 0.0086 \\ \hline
-Santiago & 500m       & propttr  & 14.70\textpm 0.28           & 2.63\textpm 0.01            & 920.22\textpm 28.39             & 0.9787\textpm 0.0000 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Santiago & 200m       & lorapropttr    & 0.2& 4.82\textpm 0.41           & 1.82\textpm 0.02            & 10484.18\textpm 1183.57             & 0.5023\textpm 0.0118 \\ \hline
+Santiago & 200m       & lorapropttr    & 0.5& 6.08\textpm 0.29           & 1.98\textpm 0.04            & 5861.73\textpm 253.26             & 0.8333\textpm 0.0057 \\ \hline
+Santiago & 200m       & lorapropttr    & 1.0& 9.86\textpm 0.54           & 2.26\textpm 0.02            & 2668.96\textpm 198.95             & 0.9259\textpm 0.0342 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.2& 5.35\textpm 0.49           & 2.05\textpm 0.03            & 8227.65\textpm 1398.68             & 0.7199\textpm 0.0515 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.5& 6.31\textpm 0.15           & 2.06\textpm 0.07            & 3267.43\textpm 211.25             & 0.9028\textpm 0.0150 \\ \hline
+Santiago & 500m       & lorapropttr    & 1.0& 10.43\textpm 0.21           & 2.40\textpm 0.05            & 1550.11\textpm 288.61             & 0.9676\textpm 0.0033 \\ \hline
+Santiago & 200m       & maxprop    & 0.2& 5.49\textpm 0.18           & 2.22\textpm 0.06            & 6281.75\textpm 476.94             & 0.8241\textpm 0.0280 \\ \hline
+Santiago & 200m       & maxprop    & 0.5& 8.10\textpm 0.19           & 2.55\textpm 0.08            & 2463.05\textpm 105.27             & 0.9352\textpm 0.0236 \\ \hline
+Santiago & 200m       & maxprop    & 1.0& 11.86\textpm 0.25           & 2.81\textpm 0.02            & 1261.10\textpm 115.95             & 0.9722\textpm 0.0057 \\ \hline
+Santiago & 500m       & maxprop    & 0.2& 5.75\textpm 0.18           & 2.35\textpm 0.07            & 3329.99\textpm 318.72             & 0.9236\textpm 0.0150 \\ \hline
+Santiago & 500m       & maxprop    & 0.5& 8.46\textpm 0.17           & 2.76\textpm 0.08            & 1121.93\textpm 228.46             & 0.9745\textpm 0.0087 \\ \hline
+Santiago & 500m       & maxprop    & 1.0& 16.47\textpm 0.16           & 3.33\textpm 0.10            & 495.27\textpm 24.39             & 0.9815\textpm 0.0033 \\ \hline
+Santiago & 200m       & propttr    & 0.2& 4.82\textpm 0.41           & 1.82\textpm 0.02            & 10484.18\textpm 1183.57             & 0.5023\textpm 0.0118 \\ \hline
+Santiago & 200m       & propttr    & 0.5& 6.07\textpm 0.30           & 1.99\textpm 0.03            & 5861.73\textpm 253.26             & 0.8333\textpm 0.0057 \\ \hline
+Santiago & 200m       & propttr    & 1.0& 9.87\textpm 0.55           & 2.28\textpm 0.04            & 2670.35\textpm 201.05             & 0.9259\textpm 0.0342 \\ \hline
+Santiago & 500m       & propttr    & 0.2& 5.35\textpm 0.49           & 2.05\textpm 0.03            & 8227.65\textpm 1398.68             & 0.7199\textpm 0.0515 \\ \hline
+Santiago & 500m       & propttr    & 0.5& 6.31\textpm 0.15           & 2.06\textpm 0.07            & 3267.43\textpm 211.25             & 0.9028\textpm 0.0150 \\ \hline
+Santiago & 500m       & propttr    & 1.0& 10.43\textpm 0.21           & 2.40\textpm 0.05            & 1550.11\textpm 288.61             & 0.9676\textpm 0.0033 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
     \caption{\label{table:resultados_santiago_menosmsj} Resultados de simulación en mapa de Santiago con baja tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Santiago & 200m       & lorapropttr  & 11.94\textpm 0.13           & 2.32\textpm 0.04            & 2169.81\textpm 129.70             & 0.9470\textpm 0.0014 \\ \hline
-Santiago & 500m       & lorapropttr  & 14.67\textpm 0.13           & 2.64\textpm 0.02            & 949.76\textpm 66.64             & 0.9725\textpm 0.0009 \\ \hline
-Santiago & 200m       & maxprop  & 15.90\textpm 0.14           & 3.09\textpm 0.03            & 1223.65\textpm 96.62             & 0.9763\textpm 0.0008 \\ \hline
-Santiago & 500m       & maxprop  & 28.74\textpm 0.20           & 3.98\textpm 0.08            & 314.39\textpm 13.81             & 0.9925\textpm 0.0011 \\ \hline
-Santiago & 200m       & propttr  & 11.97\textpm 0.19           & 2.28\textpm 0.04            & 2143.52\textpm 109.90             & 0.9418\textpm 0.0020 \\ \hline
-Santiago & 500m       & propttr  & 14.36\textpm 0.38           & 2.57\textpm 0.03            & 912.27\textpm 80.11             & 0.9713\textpm 0.0030 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Santiago & 200m       & lorapropttr    & 0.2& 4.66\textpm 0.33           & 1.91\textpm 0.02            & 11169.36\textpm 562.73             & 0.5185\textpm 0.0173 \\ \hline
+Santiago & 200m       & lorapropttr    & 0.5& 6.31\textpm 0.45           & 1.89\textpm 0.09            & 6137.39\textpm 1132.34             & 0.7917\textpm 0.0000 \\ \hline
+Santiago & 200m       & lorapropttr    & 1.0& 9.00\textpm 1.06           & 2.07\textpm 0.10            & 2036.33\textpm 259.00             & 0.9259\textpm 0.0285 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.2& 5.25\textpm 0.40           & 1.91\textpm 0.02            & 7559.35\textpm 437.54             & 0.7454\textpm 0.0645 \\ \hline
+Santiago & 500m       & lorapropttr    & 0.5& 6.21\textpm 0.61           & 2.10\textpm 0.01            & 3271.92\textpm 358.66             & 0.8935\textpm 0.0286 \\ \hline
+Santiago & 500m       & lorapropttr    & 1.0& 10.80\textpm 0.78           & 2.41\textpm 0.04            & 1316.40\textpm 141.28             & 0.9768\textpm 0.0066 \\ \hline
+Santiago & 200m       & maxprop    & 0.2& 5.40\textpm 0.51           & 2.16\textpm 0.04            & 6203.96\textpm 594.94             & 0.8055\textpm 0.0520 \\ \hline
+Santiago & 200m       & maxprop    & 0.5& 8.12\textpm 0.11           & 2.59\textpm 0.03            & 2337.28\textpm 46.87             & 0.9259\textpm 0.0236 \\ \hline
+Santiago & 200m       & maxprop    & 1.0& 11.06\textpm 0.39           & 2.63\textpm 0.04            & 1288.03\textpm 132.20             & 0.9722\textpm 0.0000 \\ \hline
+Santiago & 500m       & maxprop    & 0.2& 5.66\textpm 0.37           & 2.21\textpm 0.02            & 3256.28\textpm 124.75             & 0.9260\textpm 0.0066 \\ \hline
+Santiago & 500m       & maxprop    & 0.5& 8.36\textpm 0.12           & 2.77\textpm 0.10            & 1264.76\textpm 367.64             & 0.9722\textpm 0.0113 \\ \hline
+Santiago & 500m       & maxprop    & 1.0& 16.37\textpm 1.00           & 3.28\textpm 0.13            & 491.81\textpm 37.57             & 0.9861\textpm 0.0000 \\ \hline
+Santiago & 200m       & propttr    & 0.2& 4.66\textpm 0.33           & 1.91\textpm 0.02            & 11169.36\textpm 562.73             & 0.5185\textpm 0.0173 \\ \hline
+Santiago & 200m       & propttr    & 0.5& 6.31\textpm 0.45           & 1.89\textpm 0.09            & 6137.39\textpm 1132.34             & 0.7917\textpm 0.0000 \\ \hline
+Santiago & 200m       & propttr    & 1.0& 9.00\textpm 1.06           & 2.07\textpm 0.10            & 2036.33\textpm 259.00             & 0.9259\textpm 0.0285 \\ \hline
+Santiago & 500m       & propttr    & 0.2& 5.25\textpm 0.40           & 1.91\textpm 0.02            & 7559.35\textpm 437.54             & 0.7454\textpm 0.0645 \\ \hline
+Santiago & 500m       & propttr    & 0.5& 6.21\textpm 0.61           & 2.10\textpm 0.01            & 3271.92\textpm 358.66             & 0.8935\textpm 0.0286 \\ \hline
+Santiago & 500m       & propttr    & 1.0& 10.80\textpm 0.78           & 2.41\textpm 0.04            & 1316.40\textpm 141.28             & 0.9768\textpm 0.0066 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
-    \caption{\label{table:resultados_valparaiso_masmsj} Resultados de simulación en mapa de Valpara�so con alta tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \caption{\label{table:resultados_valparaiso_masmsj} Resultados de simulación en mapa de Valparaíso con alta tasa de mensajes} Fuente: Elaboración Propia.
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Valpara�so & 1km       & lorapropttr  & 14.37\textpm 0.40           & 2.58\textpm 0.04            & 958.56\textpm 24.83             & 0.9770\textpm 0.0014 \\ \hline
-Valpara�so & 500m       & lorapropttr  & 12.44\textpm 0.12           & 2.29\textpm 0.04            & 1449.65\textpm 24.59             & 0.9588\textpm 0.0043 \\ \hline
-Valpara�so & 1km       & maxprop  & 20.37\textpm 1.55           & 3.46\textpm 0.10            & 1084.69\textpm 85.75             & 0.9679\textpm 0.0054 \\ \hline
-Valpara�so & 500m       & maxprop  & 14.48\textpm 0.58           & 2.92\textpm 0.06            & 1624.20\textpm 62.81             & 0.9564\textpm 0.0033 \\ \hline
-Valpara�so & 1km       & propttr  & 14.29\textpm 0.34           & 2.56\textpm 0.04            & 960.06\textpm 13.58             & 0.9762\textpm 0.0050 \\ \hline
-Valpara�so & 500m       & propttr  & 12.26\textpm 0.17           & 2.32\textpm 0.06            & 1463.46\textpm 70.78             & 0.9643\textpm 0.0041 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Valparaíso & 1km       & lorapropttr    & 0.2& 30.12\textpm 0.85           & 3.19\textpm 0.20            & 609.67\textpm 38.10             & 0.9861\textpm 0.0057 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 0.5& 105.20\textpm 6.26           & 5.21\textpm 0.40            & 298.53\textpm 20.92             & 0.9908\textpm 0.0033 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 1.0& 269.45\textpm 18.22           & 7.26\textpm 0.51            & 151.72\textpm 33.75             & 0.9931\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.2& 24.45\textpm 1.33           & 2.64\textpm 0.10            & 841.24\textpm 55.51             & 0.9746\textpm 0.0066 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.5& 91.49\textpm 2.54           & 4.03\textpm 0.13            & 629.28\textpm 19.73             & 0.9792\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 1.0& 255.56\textpm 4.09           & 6.38\textpm 0.22            & 392.21\textpm 15.62             & 0.9861\textpm 0.0057 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.2& 65.19\textpm 3.38           & 4.73\textpm 0.17            & 325.72\textpm 12.30             & 0.9908\textpm 0.0033 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.5& 649.77\textpm 24.67           & 6.48\textpm 0.29            & 94.91\textpm 14.67             & 0.9931\textpm 0.0000 \\ \hline
+Valparaíso & 1km       & maxprop    & 1.0& 4098.60\textpm 111.07           & 6.79\textpm 0.09            & 43.92\textpm 22.99             & 0.9931\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.2& 31.49\textpm 0.61           & 3.37\textpm 0.09            & 589.06\textpm 18.72             & 0.9884\textpm 0.0033 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.5& 174.53\textpm 2.46           & 6.12\textpm 0.26            & 387.35\textpm 9.05             & 0.9838\textpm 0.0033 \\ \hline
+Valparaíso & 500m       & maxprop    & 1.0& 1079.82\textpm 24.94           & 10.07\textpm 0.22            & 158.70\textpm 4.34             & 0.9931\textpm 0.0000 \\ \hline
+Valparaíso & 1km       & propttr    & 0.2& 30.12\textpm 0.86           & 3.18\textpm 0.21            & 609.67\textpm 38.10             & 0.9861\textpm 0.0057 \\ \hline
+Valparaíso & 1km       & propttr    & 0.5& 105.17\textpm 6.33           & 5.21\textpm 0.40            & 298.54\textpm 20.91             & 0.9908\textpm 0.0033 \\ \hline
+Valparaíso & 1km       & propttr    & 1.0& 269.33\textpm 17.87           & 7.24\textpm 0.52            & 151.74\textpm 33.74             & 0.9931\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & propttr    & 0.2& 24.46\textpm 1.34           & 2.64\textpm 0.10            & 841.24\textpm 55.51             & 0.9746\textpm 0.0066 \\ \hline
+Valparaíso & 500m       & propttr    & 0.5& 91.48\textpm 2.59           & 4.03\textpm 0.13            & 629.26\textpm 19.77             & 0.9792\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & propttr    & 1.0& 255.65\textpm 4.44           & 6.29\textpm 0.18            & 392.27\textpm 15.70             & 0.9861\textpm 0.0057 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{adjustwidth}{-1in}{-1in}
     \centering
-    \caption{\label{table:resultados_valparaiso_menosmsj} Resultados de simulación en mapa de Valpara�so con baja tasa de mensajes} Fuente: Elaboración Propia.
-    \begin{tabular}{|l|l|l|r|r|r|r|}
+    \caption{\label{table:resultados_valparaiso_menosmsj} Resultados de simulación en mapa de Valparaíso con baja tasa de mensajes} Fuente: Elaboración Propia.
+    \begin{tabular}{|l|l|l|r|r|r|r|r|}
     \hline
     \multicolumn{1}{|c|}{Mapa}    &
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Radio (m)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Protocolo\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Densidad nodos\\ (#nodos/km^2)\end{tabular}}&
     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Overhead\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos promedio\end{tabular}}&
-    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia promedio (s)\end{tabular}}&
-    Tasa de entrega \\ \hline
-    Valpara�so & 1km       & lorapropttr  & 14.15\textpm 0.45           & 2.53\textpm 0.02            & 971.36\textpm 8.34             & 0.9783\textpm 0.0007 \\ \hline
-Valpara�so & 500m       & lorapropttr  & 12.25\textpm 0.07           & 2.29\textpm 0.02            & 1437.77\textpm 60.76             & 0.9687\textpm 0.0031 \\ \hline
-Valpara�so & 1km       & maxprop  & 20.53\textpm 1.12           & 3.58\textpm 0.08            & 1120.66\textpm 49.64             & 0.9750\textpm 0.0032 \\ \hline
-Valpara�so & 500m       & maxprop  & 14.49\textpm 0.35           & 2.95\textpm 0.02            & 1663.27\textpm 5.52             & 0.9604\textpm 0.0034 \\ \hline
-Valpara�so & 1km       & propttr  & 14.29\textpm 0.13           & 2.55\textpm 0.02            & 1002.16\textpm 41.92             & 0.9729\textpm 0.0034 \\ \hline
-Valpara�so & 500m       & propttr  & 12.18\textpm 0.32           & 2.30\textpm 0.01            & 1446.07\textpm 31.42             & 0.9638\textpm 0.0046 \\ \hline
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}\#Saltos\\ promedio\end{tabular}}&
+    \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Latencia\\ promedio (s)\end{tabular}}&
+    Tasa entrega \\ \hline
+    Valparaíso & 1km       & lorapropttr    & 0.2& 31.77\textpm 1.96           & 3.23\textpm 0.09            & 622.99\textpm 17.73             & 0.9722\textpm 0.0113 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 0.5& 110.34\textpm 13.95           & 5.38\textpm 0.33            & 331.87\textpm 55.51             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 1km       & lorapropttr    & 1.0& 278.21\textpm 6.28           & 6.78\textpm 0.72            & 162.09\textpm 7.45             & 0.9861\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.2& 25.46\textpm 0.17           & 2.75\textpm 0.17            & 887.12\textpm 62.25             & 0.9676\textpm 0.0131 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 0.5& 97.20\textpm 6.12           & 4.43\textpm 0.71            & 662.43\textpm 20.95             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 500m       & lorapropttr    & 1.0& 238.16\textpm 18.99           & 6.56\textpm 0.27            & 401.03\textpm 26.20             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.2& 67.74\textpm 2.81           & 4.64\textpm 0.23            & 355.02\textpm 33.88             & 0.9768\textpm 0.0131 \\ \hline
+Valparaíso & 1km       & maxprop    & 0.5& 634.04\textpm 19.30           & 6.51\textpm 0.34            & 106.65\textpm 20.84             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 1km       & maxprop    & 1.0& 4017.32\textpm 20.52           & 6.69\textpm 0.36            & 38.82\textpm 4.89             & 0.9861\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.2& 34.19\textpm 1.18           & 3.42\textpm 0.15            & 661.22\textpm 36.14             & 0.9676\textpm 0.0131 \\ \hline
+Valparaíso & 500m       & maxprop    & 0.5& 178.24\textpm 4.64           & 6.01\textpm 0.26            & 377.37\textpm 9.02             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 500m       & maxprop    & 1.0& 1117.52\textpm 54.55           & 9.72\textpm 0.64            & 176.92\textpm 25.14             & 0.9861\textpm 0.0000 \\ \hline
+Valparaíso & 1km       & propttr    & 0.2& 31.78\textpm 1.96           & 3.23\textpm 0.09            & 622.99\textpm 17.73             & 0.9722\textpm 0.0113 \\ \hline
+Valparaíso & 1km       & propttr    & 0.5& 110.28\textpm 13.90           & 5.39\textpm 0.33            & 331.91\textpm 55.55             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 1km       & propttr    & 1.0& 278.93\textpm 5.48           & 6.84\textpm 0.79            & 161.84\textpm 7.72             & 0.9861\textpm 0.0000 \\ \hline
+Valparaíso & 500m       & propttr    & 0.2& 25.45\textpm 0.15           & 2.74\textpm 0.18            & 887.21\textpm 62.37             & 0.9676\textpm 0.0131 \\ \hline
+Valparaíso & 500m       & propttr    & 0.5& 97.22\textpm 6.15           & 4.43\textpm 0.71            & 662.43\textpm 20.95             & 0.9815\textpm 0.0066 \\ \hline
+Valparaíso & 500m       & propttr    & 1.0& 238.17\textpm 18.98           & 6.56\textpm 0.27            & 401.03\textpm 26.20             & 0.9815\textpm 0.0066 \\ \hline
     \end{tabular}
 \end{adjustwidth}
 \end{table}
